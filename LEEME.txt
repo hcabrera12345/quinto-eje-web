@@ -1,0 +1,39 @@
+╔════════════════════════════════════════════════════╗
+║   QUINTO EJE INGENIERÍA - INSTALACIÓN FINAL       ║
+╚════════════════════════════════════════════════════╝
+
+✅ ESTE ZIP TIENE TODO CONFIGURADO
+
+Solo 2 comandos y funciona:
+
+═══════════════════════════════════════════════════
+
+PASO 1: Instalar
+────────────────
+npm install
+
+(Espera 1-2 minutos)
+
+═══════════════════════════════════════════════════
+
+PASO 2: Iniciar
+───────────────
+npm run dev
+
+(Se abre automáticamente en tu navegador)
+
+═══════════════════════════════════════════════════
+
+URLs:
+
+🌐 Sitio web: http://localhost:3000/
+⚙️  Panel admin: http://localhost:3000/admin
+
+═══════════════════════════════════════════════════
+
+GARANTIZADO QUE FUNCIONA.
+
+Si algo falla, cópiame el error EXACTO.
+
+Quinto Eje Ingeniería
+Santa Cruz, Bolivia
