@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Calendar, Mail, Phone, MapPin, Send, X, Menu, ChevronRight, Code, Cpu, Brain, LineChart, Users, BookOpen, CheckCircle2, ArrowRight, MessageSquare, MousePointer2, Clock } from 'lucide-react';
+import { Calendar, Mail, Phone, MapPin, Send, X, Menu, ChevronRight, Code, Cpu, Brain, LineChart, Users, BookOpen, CheckCircle2, ArrowRight, MessageSquare, MousePointer2, Clock, Linkedin, Twitter, Facebook, Instagram, Github } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { initialConfig } from '../data/initialConfig';
 
@@ -1257,16 +1257,29 @@ const QuintoEjeInnovative = () => {
             <div>
               <h4 className="font-display font-bold text-white mb-3 sm:mb-4 text-sm sm:text-base">Síguenos</h4>
               <div className="flex gap-3 sm:gap-4">
-                {['LinkedIn', 'GitHub', 'Twitter'].map((social) => (
-                  <a
-                    key={social}
-                    href="#"
-                    className="w-10 h-10 sm:w-12 sm:h-12 bg-white/5 border border-white/10 rounded-lg sm:rounded-xl flex items-center justify-center hover:bg-cyan-500/20 hover:border-cyan-500/40 transition-all"
-                    title={social}
-                  >
-                    <Users className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
-                  </a>
-                ))}
+                <a
+                  href="https://www.linkedin.com/in/hernan-cabrera-pantoja-a75a66a2/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 sm:w-12 sm:h-12 bg-white/5 border border-white/10 rounded-lg sm:rounded-xl flex items-center justify-center hover:bg-cyan-500/20 hover:border-cyan-500/40 transition-all"
+                  title="LinkedIn"
+                >
+                  <Linkedin className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
+                </a>
+                <a
+                  href="#"
+                  className="w-10 h-10 sm:w-12 sm:h-12 bg-white/5 border border-white/10 rounded-lg sm:rounded-xl flex items-center justify-center hover:bg-cyan-500/20 hover:border-cyan-500/40 transition-all"
+                  title="GitHub"
+                >
+                  <Github className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
+                </a>
+                <a
+                  href="#"
+                  className="w-10 h-10 sm:w-12 sm:h-12 bg-white/5 border border-white/10 rounded-lg sm:rounded-xl flex items-center justify-center hover:bg-cyan-500/20 hover:border-cyan-500/40 transition-all"
+                  title="Twitter"
+                >
+                  <Twitter className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
+                </a>
               </div>
             </div>
           </div>
