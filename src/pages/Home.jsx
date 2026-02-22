@@ -1267,11 +1267,13 @@ const QuintoEjeInnovative = () => {
                   <Linkedin className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
                 </a>
                 <a
-                  href="#"
+                  href="https://www.facebook.com/profile.php?id=61588550460510"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 sm:w-12 sm:h-12 bg-white/5 border border-white/10 rounded-lg sm:rounded-xl flex items-center justify-center hover:bg-cyan-500/20 hover:border-cyan-500/40 transition-all"
-                  title="GitHub"
+                  title="Facebook"
                 >
-                  <Github className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
+                  <Facebook className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
                 </a>
                 <a
                   href="#"
