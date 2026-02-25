@@ -1121,7 +1121,7 @@ const QuintoEjeInnovative = () => {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-black/30 border border-cyan-500/30 rounded-lg sm:rounded-xl text-white font-display text-sm sm:text-base focus:outline-none focus:border-cyan-400 transition-all"
-                    placeholder="tu@email.com"
+                    placeholder="quintoejeingenieria@gmail.com"
                   />
                 </div>
 
