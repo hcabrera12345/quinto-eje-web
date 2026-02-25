@@ -1,24 +1,35 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { Save, Plus, Trash2, Upload, Eye, Settings, Mail, Image as ImageIcon, Link as LinkIcon, Edit2, X, Check, Facebook, Instagram, Linkedin, Twitter, Copy } from 'lucide-react';
-import { initialConfig } from '../data/initialConfig';
+import configData from '../data/config.json';
 
 const AdminPanel = () => {
-  // Estado inicial con toda la configuraciÃ³n de la web
-  const [config, setConfig] = useState(initialConfig);
+  // Estado inicial con toda la configuración real
+  const [config, setConfig] = useState(configData);
 
-  // Descargar configuración como archivo JSON (Método Principal de Persistencia)
-  const downloadConfig = () => {
-    const dataStr = JSON.stringify(config, null, 2);
-    const dataBlob = new Blob([dataStr], { type: 'application/json' });
-    const url = URL.createObjectURL(dataBlob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'config.json';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  // Guardar configuración permanentemente en el código fuente
+  const downloadConfig = async () => {
+    try {
+      const response = await fetch('/api/save-config', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(config)
+      });
 
-    alert('⚠️ IMPORTANTE:\n\n1. Se ha descargado el archivo "config.json"\n2. Copia este archivo a tu carpeta del proyecto en:\n   src/data/config.json\n3. Reemplaza el archivo existente.\n\n¡Esto guardará tus cambios permanentemente!');
+      const result = await response.json();
+
+      if (result.success) {
+        alert('✅ ¡Cambios guardados exitosamente en tu código fuente!\n\nLa configuración se ha congelado en config.json y se verá al instante en la página principal.\nPara publicarlo a todos los usuarios, solo necesitas hacer un "git push".');
+        localStorage.setItem('quintoEjeConfig', JSON.stringify(config)); // Backup local
+      } else {
+        throw new Error(result.error);
+      }
+    } catch (error) {
+      console.error('Error saving config:', error);
+      alert('❌ Error al guardar. Asegúrate de estar ejecutando el entorno de desarrollo local (npm run dev).\n\nComo plan de respaldo, hemos guardado tus cambios en el navegador.');
+      localStorage.setItem('quintoEjeConfig', JSON.stringify(config));
+    }
   };
 
   const copyConfig = () => {

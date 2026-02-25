@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Calendar, Mail, Phone, MapPin, Send, X, Menu, ChevronRight, Code, Cpu, Brain, LineChart, Users, BookOpen, CheckCircle2, ArrowRight, MessageSquare, MousePointer2, Clock, Linkedin, Twitter, Facebook, Instagram, Github } from 'lucide-react';
 import emailjs from '@emailjs/browser';
-import { initialConfig } from '../data/initialConfig';
+import configData from '../data/config.json';
 
 const QuintoEjeInnovative = () => {
   const [activeSection, setActiveSection] = useState('inicio');
@@ -14,27 +14,8 @@ const QuintoEjeInnovative = () => {
   const [expandedProject, setExpandedProject] = useState(null);
   const canvasRef = useRef(null);
 
-  // Cargar configuración del panel de administración
-  const [config, setConfig] = useState(initialConfig);
-
-  useEffect(() => {
-    const savedConfig = localStorage.getItem('quintoEjeConfig');
-    if (savedConfig) {
-      try {
-        const parsed = JSON.parse(savedConfig);
-        // Validate array types to prevent crashes
-        if (parsed && Array.isArray(parsed.services) && Array.isArray(parsed.projects) && Array.isArray(parsed.capacitaciones)) {
-          setConfig(parsed);
-        } else {
-          console.warn("Invalid config schema found. Resetting.");
-          localStorage.removeItem('quintoEjeConfig');
-        }
-      } catch (e) {
-        console.error("Error loading config:", e);
-        localStorage.removeItem('quintoEjeConfig');
-      }
-    }
-  }, []);
+  // Cargar configuración centralizada (La principal fuente de verdad)
+  const [config, setConfig] = useState(configData);
 
   // Toggle expand service
   const toggleService = (serviceId) => {
