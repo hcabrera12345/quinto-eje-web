@@ -1,13 +1,13 @@
 export const initialConfig = {
     siteName: "Quinto Eje Ingeniería",
     siteSlogan: "Soluciones en Ingeniería Inteligente",
-    contactEmail: "hernancabreraasesor@gmail.com",
+    contactEmail: "quintoejeingenieria@gmail.com",
     phone: "+591 76089998",
     location: "Santa Cruz de la Sierra, Bolivia",
     heroTitle: "Soluciones en Ingeniería Inteligente",
     heroSubtitle: "El Quinto Eje: la capa de inteligencia de datos que transforma. Integro desarrollo, IA y automatización para impulsar tu negocio hacia la INDUSTRIA 4.0.",
     emailConfig: {
-        serviceEmail: "hernancabreraasesor@gmail.com",
+        serviceEmail: "quintoejeingenieria@gmail.com",
         emailJsServiceId: "service_tb4y6uc",
         emailJsTemplateId: "template_j3ivpza",
         emailJsPublicKey: "m2BXsfo4bfyFGUIGo"
