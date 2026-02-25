@@ -593,7 +593,7 @@ const QuintoEjeInnovative = () => {
                   />
                 </svg>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="font-display font-black text-white text-xl mt-1">5E</span>
+                  <span className="font-display font-black text-white text-xl mt-1">Q5</span>
                 </div>
               </div>
               <div>
@@ -757,7 +757,7 @@ const QuintoEjeInnovative = () => {
                   }}
                 ></div>
                 <div className="absolute inset-0 flex items-center justify-center" style={{ transform: 'translateZ(60px)' }}>
-                  <div className="text-4xl sm:text-5xl md:text-6xl font-display font-black text-gradient">5E</div>
+                  <div className="text-4xl sm:text-5xl md:text-6xl font-display font-black text-gradient">Q5</div>
                 </div>
               </div>
             </div>
@@ -1201,7 +1201,7 @@ const QuintoEjeInnovative = () => {
                     />
                   </svg>
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="font-display font-black text-white text-base sm:text-lg mt-1">5E</span>
+                    <span className="font-display font-black text-white text-base sm:text-lg mt-1">Q5</span>
                   </div>
                 </div>
                 <div>
