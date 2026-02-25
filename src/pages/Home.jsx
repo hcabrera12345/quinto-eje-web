@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Calendar, Mail, Phone, MapPin, Send, X, Menu, ChevronRight, Code, Cpu, Brain, LineChart, Users, BookOpen, CheckCircle2, ArrowRight, MessageSquare, MousePointer2, Clock, Linkedin, Twitter, Facebook, Instagram, Github } from 'lucide-react';
+import { Calendar, Mail, Phone, MapPin, Send, X, Menu, ChevronRight, Code, Cpu, Brain, LineChart, Users, BookOpen, CheckCircle2, ArrowRight, MessageSquare, MousePointer2, Clock, Linkedin, Twitter, Facebook, Instagram, Github, Youtube } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import configData from '../data/config.json';
 
@@ -1257,11 +1257,13 @@ const QuintoEjeInnovative = () => {
                   <Facebook className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
                 </a>
                 <a
-                  href="#"
-                  className="w-10 h-10 sm:w-12 sm:h-12 bg-white/5 border border-white/10 rounded-lg sm:rounded-xl flex items-center justify-center hover:bg-cyan-500/20 hover:border-cyan-500/40 transition-all"
-                  title="Twitter"
+                  href="https://www.youtube.com/@QUINTOEJE"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 sm:w-12 sm:h-12 bg-white/5 border border-white/10 rounded-lg sm:rounded-xl flex items-center justify-center hover:bg-red-500/20 hover:border-red-500/40 transition-all text-gray-400 hover:text-red-500"
+                  title="YouTube"
                 >
-                  <Twitter className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
+                  <Youtube className="w-4 h-4 sm:w-5 sm:h-5" />
                 </a>
               </div>
             </div>
