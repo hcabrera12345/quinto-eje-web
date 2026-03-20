@@ -1,132 +1,166 @@
 {
-    "siteName": "Quinto Eje Ingeniería",
-    "siteSlogan": "Soluciones en Ingeniería Inteligente",
-    "contactEmail": "quintoejeingenieria@gmail.com",
-    "phone": "+591 76089998",
-    "location": "Santa Cruz de la Sierra, Bolivia",
-    "heroTitle": "Soluciones en Ingeniería Inteligente",
-    "heroSubtitle": "El Quinto Eje: la capa de inteligencia de datos que transforma. Integro desarrollo, IA y automatización para impulsar tu negocio hacia la INDUSTRIA 4.0.",
-    "emailConfig": {
-        "serviceEmail": "quintoejeingenieria@gmail.com",
-        "emailJsServiceId": "service_tb4y6uc",
-        "emailJsTemplateId": "template_j3ivpza",
-        "emailJsPublicKey": "m2BXsfo4bfyFGUIGo"
+  "siteName": "Quinto Eje Ingeniería",
+  "siteSlogan": "Soluciones en Ingeniería Inteligente",
+  "contactEmail": "hernancabreraasesor@gmail.com",
+  "phone": "+591 76089998",
+  "location": "Santa Cruz de la Sierra, Bolivia",
+  "heroTitle": "Soluciones en Ingeniería Inteligente",
+  "heroSubtitle": "El Quinto Eje: la capa de inteligencia de datos que transforma. Integro desarrollo, IA y automatización para impulsar tu negocio hacia la INDUSTRIA 4.0.",
+  "emailConfig": {
+    "serviceEmail": "hernancabreraasesor@gmail.com",
+    "emailJsServiceId": "service_tb4y6uc",
+    "emailJsTemplateId": "template_j3ivpza",
+    "emailJsPublicKey": "m2BXsfo4bfyFGUIGo"
+  },
+  "services": [
+    {
+      "id": 1,
+      "title": "DESARROLLO DE AGENTES INTELIGENTES",
+      "description": "Desarrollo de agentes inteligentes y sistemas de automatización basados en IA para optimizar procesos empresariales, industriales.",
+      "detailedInfo": "Potencia tú negocio con 'empleados digitales' que operan 24/7. Quinto Eje desarrolla Agentes de IA autónomos con capacidad para atender clientes, agendar citas, negociar ventas, generar reportes y analizar documentos sin supervisión humana. No es solo un chatbot; es inteligencia operativa que aprende y escala junto a la empresa.",
+      "image": "",
+      "detailImage": "",
+      "url": "",
+      "color": "from-cyan-500 to-blue-600"
     },
-    "socialMedia": {
-        "facebook": "",
-        "instagram": "",
-        "twitter": "",
-        "linkedin": ""
+    {
+      "id": 2,
+      "title": "Desarrollo Web & Apps",
+      "description": "Aplicaciones web y móviles modernas, escalables y centradas en la experiencia del usuario.",
+      "detailedInfo": "Más que código, Quinto Eje construye activos digitales de alto impacto. Desarrolla plataformas web, estáticas, progresivas (PWA) y aplicaciones móviles  centradas en la velocidad y la conversión. Fusiona diseño de vanguardia con arquitectura robusta para que la marca no solo luzca bien, sino que se operativa, funcional y accesible.",
+      "image": "",
+      "detailImage": "",
+      "url": "",
+      "color": "from-purple-500 to-pink-600"
     },
-    "services": [
-        {
-            "id": 1,
-            "title": "DESARROLLO DE AGENTES INTELIGENTES",
-            "description": "Desarrollo de agentes inteligentes y sistemas de automatización basados en IA para optimizar procesos empresariales, industriales.",
-            "detailedInfo": "Potencia tú negocio con 'empleados digitales' que operan 24/7. Quinto Eje desarrolla Agentes de IA autónomos con capacidad para atender clientes, agendar citas, negociar ventas, generar reportes y analizar documentos sin supervisión humana. No es solo un chatbot; es inteligencia operativa que aprende y escala junto a la empresa.",
-            "image": "",
-            "detailImage": "",
-            "url": "",
-            "color": "from-cyan-500 to-blue-600"
-        },
-        {
-            "id": 2,
-            "title": "Desarrollo Web & Apps",
-            "description": "Aplicaciones web y móviles modernas, escalables y centradas en la experiencia del usuario.",
-            "detailedInfo": "Más que código, Quinto Eje construye activos digitales de alto impacto. Desarrolla plataformas web, estáticas, progresivas (PWA) y aplicaciones móviles centradas en la velocidad y la conversión. Fusiona diseño de vanguardia con arquitectura robusta para que la marca no solo luzca bien, sino que se operativa, funcional y accesible.",
-            "image": "",
-            "detailImage": "",
-            "url": "",
-            "color": "from-purple-500 to-pink-600"
-        },
-        {
-            "id": 3,
-            "title": "Industria 4.0",
-            "description": "Implementación de soluciones y asesoramiento tecnológico.",
-            "detailedInfo": "Diseña la hoja de ruta para la transformación digital de la industria. Quinto Eje realiza diagnósticos tecnológicos profundos para identificar cuellos de botella y oportunidades ocultas. Asesora en la selección e integración de tecnologías emergentes, garantizando que cada inversión digital se traduzca en rentabilidad y ventaja competitiva real, sin el caos de la implementación desordenada.",
-            "image": "",
-            "detailImage": "",
-            "url": "",
-            "color": "from-orange-500 to-red-600"
-        },
-        {
-            "id": 4,
-            "title": "Monitoreo & Reportes",
-            "description": "Sistemas inteligentes de seguimiento, análisis de datos y dashboards interactivos para toma de decisiones.",
-            "detailedInfo": "Transforma datos aislados en decisiones estratégicas. Implementa Centros de Comando Digitales y Dashboards interactivos que centralizan toda la operación en una sola pantalla. Permite recibir alertas en tiempo real y visualizar el pulso de la empresa al instante, eliminando las ciegas operativas para siempre.",
-            "image": "",
-            "detailImage": "",
-            "url": "",
-            "color": "from-green-500 to-teal-600"
-        }
-    ],
-    "projects": [
-        {
-            "id": 1,
-            "title": "ROCKEFELLER",
-            "category": "IA AGENT",
-            "description": "Un bot inteligente para la generación de reportes en tiempo real por comandos de texto y voz",
-            "detailedInfo": "Un bot activo y funcional en TELEGRAM. Si quieres un reporte sin depender de terceros, puedes pedirle a ROCKEFELLER, te lo dará en tiempo real, solo por comandos de voz.",
-            "image": "",
-            "detailImage": "",
-            "url": "https://t.me/Rock_Fuk_bot",
-            "gradient": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
-        },
-        {
-            "id": 2,
-            "title": "MyCuentas_Bot",
-            "category": "IA AGENT",
-            "description": "Chatbot en TELEGRAM con procesamiento de lenguaje natural para el registro de gastos diarios por comandos de voz.",
-            "detailedInfo": "Agente conversacional inteligente que registra tus gastos por comando de voz y te saca reportes cada vez que los necesitas, ideal para las finanzas personales.",
-            "image": "",
-            "detailImage": "",
-            "url": "https://t.me/MyCuentas_bot",
-            "gradient": "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"
-        },
-        {
-            "id": 3,
-            "title": "LeyCo",
-            "category": "IA AGENT",
-            "description": "Agente IA en TELEGRAM para las consultas en formato texto o por comando de voz para el analisis, interpretación y ayuda de documentos como leyes, decretos, resoluciones y otros.",
-            "detailedInfo": "Agente inteligente que te ayuda a redactar, analizar, interpretar, carga los documentos que desees trabajar. Te ayudará con la redacción, sugerencias técnicas.",
-            "image": "",
-            "detailImage": "",
-            "url": "https://t.me/LeyCo_bot",
-            "gradient": "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"
-        },
-        {
-            "id": 4,
-            "title": "DASHBOARD INTELIGENTE",
-            "category": "Data Reporting & Science",
-            "description": "Un dashboard inteligente para la visualización de datos en tiempo real y la toma de decisiones.",
-            "detailedInfo": "Dashboard inteligente como resultado de un analisis de datos, para la visualización ejecutiva de todo tipo de reportes.",
-            "image": "",
-            "detailImage": "",
-            "url": "https://webreporte-j87aou7q2nds9xwsklwem4.streamlit.app/",
-            "gradient": "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)"
-        },
-        {
-            "id": 1770736412511,
-            "title": "CURSOS MOOC - PYTHON PROGRAMMING",
-            "category": "DESARROLLO WEB",
-            "description": "Desarrollo de una plataforma virtual educativa en formato MOOC.",
-            "detailedInfo": "En este ejemplo desarrollamos un curso para la programación en python, nivel básico a intermedio.",
-            "image": "",
-            "detailImage": "",
-            "url": "https://python-mooc-platform.onrender.com/",
-            "gradient": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
-        }
-    ],
-    "capacitaciones": [
-        {
-            "id": 4,
-            "title": "PYTHON PARA ANALISIS DE DATOS EN LA INDUSTRIA PETROLERA",
-            "duration": "24 horas",
-            "level": "Intermedio",
-            "date": "07 MARZO 2026",
-            "description": "Curso especializado con la CBHE orientado a profesionales del sector energético que buscan convertir datos operacionales en decisiones estratégicas. A través de Python y herramientas de análisis de datos, los participantes aprenderán a procesar, analizar y visualizar información proveniente de operaciones petroleras reales",
-            "image": "https://i.imgur.com/I5XXnde.jpeg",
-            "url": "https://www.facebook.com/reel/877563531786793"
-        }
-    ]
+    {
+      "id": 3,
+      "title": "Industria 4.0",
+      "description": "Implementación de soluciones y asesoramiento tecnológico.",
+      "detailedInfo": "Diseña la hoja de ruta para la transformación digital de la industria. Quinto Eje realiza diagnósticos tecnológicos profundos para identificar cuellos de botella y oportunidades ocultas. Asesora en la selección e integración de tecnologías emergentes, garantizando que cada inversión digital se traduzca en rentabilidad y ventaja competitiva real, sin el caos de la implementación desordenada.",
+      "image": "",
+      "detailImage": "",
+      "url": "",
+      "color": "from-orange-500 to-red-600"
+    },
+    {
+      "id": 4,
+      "title": "Monitoreo & Reportes",
+      "description": "Sistemas inteligentes de seguimiento, análisis de datos y dashboards interactivos para toma de decisiones.",
+      "detailedInfo": "Transforma datos aislados en decisiones estratégicas. Implementa Centros de Comando Digitales y Dashboards interactivos que centralizan toda la operación en una sola pantalla. Permite recibir alertas en tiempo real y visualizar el pulso de la empresa al instante, eliminando las ciegas operativas para siempre.",
+      "image": "",
+      "detailImage": "",
+      "url": "",
+      "color": "from-green-500 to-teal-600"
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "title": "ROCKEFELLER",
+      "category": "IA AGENT",
+      "description": "Un bot inteligente para la generación de reportes en tiempo real por comandos de texto y voz",
+      "detailedInfo": "Un bot activo y funcional en TELEGRAM. Si quieres un reporte sin depender de terceros, puedes pedirle a ROCKEFELLER, te lo dará en tiempo real, solo por comandos de voz.",
+      "image": "",
+      "detailImage": "",
+      "url": "https://t.me/Rock_Fuk_bot",
+      "gradient": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+    },
+    {
+      "id": 2,
+      "title": "MyCuentas_Bot",
+      "category": "IA AGENT",
+      "description": "Chatbot  en  TELEGRAM con procesamiento de lenguaje natural para el registro de gastos diarios por comandos de voz.",
+      "detailedInfo": "Agente conversacional inteligente que registra tus gastos por comando de voz y te saca reportes cada vez que los necesitas, ideal para las finanzas personales.",
+      "image": "",
+      "detailImage": "",
+      "url": "https://t.me/MyCuentas_bot",
+      "gradient": "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"
+    },
+    {
+      "id": 3,
+      "title": "LeyCo",
+      "category": "IA AGENT",
+      "description": "Agente IA en TELEGRAM para las consultas en formato texto o por comando de voz para el analisis, interpretación y ayuda de documentos como leyes, decretos, resoluciones y otros.",
+      "detailedInfo": "Agente inteligente que te ayuda a redactar, analizar, interpretar, carga los documentos que desees trabajar. Te ayudará con la redacción, sugerencias técnicas.",
+      "image": "",
+      "detailImage": "",
+      "url": "https://t.me/LeyCo_bot",
+      "gradient": "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"
+    },
+    {
+      "id": 4,
+      "title": "DASHBOARD INTELIGENTE",
+      "category": "Data Reporting & Science",
+      "description": "Un dashboard inteligente para la visualización de datos en tiempo real y la toma de decisiones.",
+      "detailedInfo": "Dashboard inteligente como resultado de un analisis de datos, para la visualización ejecutiva de todo tipo de reportes.",
+      "image": "",
+      "detailImage": "",
+      "url": "https://webreporte-j87aou7q2nds9xwsklwem4.streamlit.app/",
+      "gradient": "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)"
+    },
+    {
+      "id": 1770736412511,
+      "title": "CURSOS MOOC - PYTHON PROGRAMMING",
+      "category": "DESARROLLO WEB",
+      "description": "Desarrollo de una plataforma virtual educativa en formato MOOC.",
+      "detailedInfo": "En este ejemplo desarrollamos un curso para la programación en python, nivel básico   a intermedio.",
+      "image": "",
+      "detailImage": "",
+      "url": "https://python-mooc-platform.onrender.com/",
+      "gradient": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+    }
+  ],
+  "capacitaciones": [
+    {
+      "id": 4,
+      "title": "PYTHON PARA ANALISIS DE DATOS EN LA INDUSTRIA PETROLERA",
+      "duration": "24 horas",
+      "level": "Intermedio",
+      "date": "07 MARZO 2026",
+      "description": "Curso especializado con la CBHE orientado a profesionales del\nsector energético que buscan convertir datos\noperacionales en decisiones estratégicas. A través\nde Python y herramientas de análisis de datos, los\nparticipantes aprenderán a procesar, analizar y\nvisualizar información proveniente de operaciones\npetroleras reales",
+      "image": "https://imgur.com/I5XXnde",
+      "url": "https://www.facebook.com/reel/877563531786793"
+    },
+    {
+      "id": 1774015961932,
+      "title": "Posicionamiento, marketing digital con IA",
+      "duration": "20 horas",
+      "level": "Intermedio",
+      "date": "Proximamente",
+      "description": "Desarrollar estrategias digitales para atraer y convertir clientes.\nAlcance: SEO/SEM, redes sociales, email marketing, analítica web.",
+      "image": "https://imgur.com/Dqou6LX.jpg",
+      "url": ""
+    },
+    {
+      "id": 1774017251820,
+      "title": "Excel Avanzado con IA",
+      "duration": "24 horas",
+      "level": "Intermedio",
+      "date": "Proximamente",
+      "description": "Dominar análisis de datos, automatización y dashboards en Excel. Funciones, tablas dinámicas, Power Query, macros VBA aplicando IA.\n\n",
+      "image": "https://imgur.com/iWqobS3.jpg",
+      "url": ""
+    },
+    {
+      "id": 1774017309992,
+      "title": "Dashboard Ejecutivos con Power Bi",
+      "duration": "24 horas",
+      "level": "Avanzado",
+      "date": "Proximamente",
+      "description": "Crear reportes interactivos que transformen datos en decisiones. Modelado DAX, visualizaciones, publicación cloud, storytelling.\n\n",
+      "image": "https://imgur.com/0gCK1Zc.jpg",
+      "url": ""
+    },
+    {
+      "id": 1774017378055,
+      "title": "Herramientas IA aplicadas",
+      "duration": "16 horas",
+      "level": "Avanzado",
+      "date": "Proximamente",
+      "description": "Aplicar herramientas de IA generativa para ganar productividad. ChatGPT, Copilot, gemini, claude, grok, otros, prompt engineering, automatización de procesos.\n\n",
+      "image": "https://imgur.com/WhUo6dm.jpg",
+      "url": ""
+    }
+  ]
 }

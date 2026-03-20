@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Calendar, Mail, Phone, MapPin, Send, X, Menu, ChevronRight, Code, Cpu, Brain, LineChart, Users, BookOpen, CheckCircle2, ArrowRight, MessageSquare, MousePointer2, Clock, Linkedin, Twitter, Facebook, Instagram, Github, Youtube } from 'lucide-react';
+import { Calendar, Mail, Phone, MapPin, Send, X, Menu, ChevronRight, Code, Cpu, Brain, LineChart, Users, BookOpen, CheckCircle2, ArrowRight, MessageSquare, MousePointer2, Clock, Linkedin, Twitter, Facebook, Instagram, Github, Youtube, Image as ImageIcon } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import configData from '../data/config.json';
 
@@ -310,6 +310,15 @@ const QuintoEjeInnovative = () => {
     }
   };
 
+  const formatImageUrl = (url) => {
+    if (!url) return '';
+    if (url.includes('imgur.com') && !url.includes('i.imgur.com') && !url.includes('/a/') && !url.includes('/gallery/')) {
+      const hash = url.split('/').filter(Boolean).pop();
+      return `https://i.imgur.com/${hash}.jpg`;
+    }
+    return url;
+  };
+
   return (
     <div className="bg-black text-white font-sans overflow-x-hidden">
       <style>{`
@@ -584,7 +593,7 @@ const QuintoEjeInnovative = () => {
             </div>
 
             <div className="hidden md:flex space-x-8 font-display">
-              {['inicio', 'servicios', 'proyectos', 'capacitaciones', 'contacto'].map((item) => (
+              {['inicio', 'servicios', 'proyectos', 'capacitaciones', 'asesoramiento', 'contacto'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item)}
@@ -604,7 +613,7 @@ const QuintoEjeInnovative = () => {
 
           {menuOpen && (
             <div className="md:hidden mt-6 pb-4 space-y-3">
-              {['inicio', 'servicios', 'proyectos', 'capacitaciones', 'contacto'].map((item) => (
+              {['inicio', 'servicios', 'proyectos', 'capacitaciones', 'asesoramiento', 'contacto'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item)}
@@ -968,11 +977,11 @@ const QuintoEjeInnovative = () => {
             </p>
           </div>
 
-          <div className="flex flex-col items-center gap-6 sm:gap-8 px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 px-4">
             {capacitaciones.map((curso, idx) => (
               <div
                 key={idx}
-                className="w-full max-w-2xl card-3d bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl sm:rounded-3xl overflow-hidden group hover:border-cyan-500/40 transition-all flex flex-col"
+                className="w-full card-3d bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl sm:rounded-3xl overflow-hidden group hover:border-cyan-500/40 transition-all flex flex-col h-full"
               >
                 {/* Image Section - Smart Fit (No cropping) */}
                 {curso.image && (
@@ -980,12 +989,7 @@ const QuintoEjeInnovative = () => {
                     {/* Layer 1: Blurred Background (fills space) */}
                     <div className="absolute inset-0">
                       <img
-                        src={(() => {
-                          const url = curso.image;
-                          if (url.includes('imgur.com/a/')) return url.replace('imgur.com/a/', 'i.imgur.com/') + '.jpg';
-                          if (url.includes('imgur.com') && !url.includes('i.imgur.com')) return url.replace('imgur.com', 'i.imgur.com') + '.jpg';
-                          return url;
-                        })()}
+                        src={formatImageUrl(curso.image)}
                         alt=""
                         className="w-full h-full object-cover opacity-30 blur-xl scale-110"
                       />
@@ -994,12 +998,7 @@ const QuintoEjeInnovative = () => {
                     {/* Layer 2: Full Image (contained, no cropping) */}
                     <div className="absolute inset-0 flex items-center justify-center p-4 z-10 transition-transform duration-700 group-hover:scale-105">
                       <img
-                        src={(() => {
-                          const url = curso.image;
-                          if (url.includes('imgur.com/a/')) return url.replace('imgur.com/a/', 'i.imgur.com/') + '.jpg';
-                          if (url.includes('imgur.com') && !url.includes('i.imgur.com')) return url.replace('imgur.com', 'i.imgur.com') + '.jpg';
-                          return url;
-                        })()}
+                        src={formatImageUrl(curso.image)}
                         alt={curso.title}
                         className="w-full h-full object-contain drop-shadow-2xl"
                         onError={(e) => {
@@ -1050,18 +1049,89 @@ const QuintoEjeInnovative = () => {
                     </p>
                   </div>
 
-                  <a
-                    href={curso.url || '#'}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block w-full text-center px-6 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 rounded-xl text-white font-display font-bold text-lg shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2"
-                  >
-                    Más información
-                    <ArrowRight className="w-5 h-5" />
-                  </a>
+                  {curso.title.toLowerCase().includes('python') ? (
+                    <a
+                      href={curso.url || '#'}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block w-full text-center px-6 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 rounded-xl text-white font-display font-bold text-lg shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2"
+                    >
+                      Más información
+                      <ArrowRight className="w-5 h-5" />
+                    </a>
+                  ) : (
+                    <button
+                      onClick={() => scrollToSection('contacto')}
+                      className="w-full text-center px-6 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 rounded-xl text-white font-display font-bold text-lg shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2"
+                    >
+                      Más información
+                      <ArrowRight className="w-5 h-5" />
+                    </button>
+                  )}
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Asesoramiento Section */}
+      <section id="asesoramiento" className="py-16 sm:py-24 md:py-32 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-12 sm:mb-16 md:mb-20">
+            <h2 className="font-display font-black text-4xl sm:text-5xl md:text-6xl mb-4 sm:mb-6">
+              <span className="text-gradient">Asesoramiento</span>
+            </h2>
+            <p className="text-gray-400 text-base sm:text-lg md:text-xl font-display max-w-3xl mx-auto px-4">
+              Orientación profesional en tus proyectos académicos, profesionales, técnicos e industriales
+            </p>
+          </div>
+
+          <div className="card-3d bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl sm:rounded-3xl overflow-hidden group hover:border-cyan-500/40 transition-all">
+            <div className="flex flex-col lg:flex-row">
+              {/* Image */}
+              <div className="w-full lg:w-1/2 min-h-[300px] lg:min-h-[400px] relative border-b lg:border-b-0 lg:border-r border-white/10 overflow-hidden group">
+                <div className="absolute inset-0 bg-black">
+                  <img 
+                    src="/asesoramiento-bg.png" 
+                    alt="Asesoramiento Profesional" 
+                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 opacity-70 group-hover:opacity-100" 
+                  />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none"></div>
+                <div className="absolute inset-0 bg-cyan-900/10 mix-blend-overlay pointer-events-none"></div>
+              </div>
+
+              {/* Text Description */}
+              <div className="w-full lg:w-1/2 p-8 sm:p-12 flex flex-col justify-center">
+                <h3 className="font-display font-bold text-2xl sm:text-3xl text-white mb-6 group-hover:text-cyan-400 transition-colors">
+                  Asesoramiento profesional en tus proyectos
+                </h3>
+                <p className="text-gray-300 font-display text-base sm:text-lg leading-relaxed mb-6">
+                  Ofrecemos un servicio integral de asesoramiento académico especializado en la elaboración de proyectos de alto nivel, fusionándolo con consultoría técnica de vanguardia. Potenciamos sus procesos mediante la implementación de Inteligencia Artificial aplicada, análisis de datos avanzado y sistemas de monitoreo con dashboards en tiempo real, garantizando una toma de decisiones informada, ágil y precisa.
+                </p>
+                <ul className="space-y-4 mb-8">
+                  <li className="flex items-start gap-3">
+                     <CheckCircle2 className="w-6 h-6 text-cyan-400 shrink-0" />
+                     <span className="text-gray-300 font-display">Asesoramiento académico en tus proyectos educativos.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                     <CheckCircle2 className="w-6 h-6 text-cyan-400 shrink-0" />
+                     <span className="text-gray-300 font-display">Asesoramiento de alto nivel en tus proyectos de ingeniería y tecnología y análisis de datos.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                     <CheckCircle2 className="w-6 h-6 text-cyan-400 shrink-0" />
+                     <span className="text-gray-300 font-display">Asesoramiento aplicado en herramientas de IA.</span>
+                  </li>
+                </ul>
+                <button
+                  onClick={() => scrollToSection('contacto')}
+                  className="w-fit magnetic-button px-6 sm:px-8 py-3 sm:py-4 border-2 border-cyan-500 rounded-lg sm:rounded-xl font-display font-bold text-base sm:text-lg hover:bg-cyan-500 hover:text-white transition-all text-cyan-400"
+                >
+                  Solicitar Evaluación Exclusiva
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1222,7 +1292,7 @@ const QuintoEjeInnovative = () => {
             <div>
               <h4 className="font-display font-bold text-white mb-3 sm:mb-4 text-sm sm:text-base">Enlaces</h4>
               <ul className="space-y-2">
-                {['servicios', 'proyectos', 'capacitaciones', 'contacto'].map((item) => (
+                {['servicios', 'proyectos', 'capacitaciones', 'asesoramiento', 'contacto'].map((item) => (
                   <li key={item}>
                     <button
                       onClick={() => scrollToSection(item)}
