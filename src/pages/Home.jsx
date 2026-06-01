@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { lazy, Suspense } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
 import { Calendar, Mail, Phone, MapPin, Send, X, Menu, ChevronRight, Code, Cpu, Brain, LineChart, Users, BookOpen, CheckCircle2, ArrowRight, MessageSquare, MousePointer2, Clock, Linkedin, Twitter, Facebook, Instagram, Github, Youtube, Image as ImageIcon } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import configData from '../data/config.json';
@@ -320,288 +322,38 @@ const QuintoEjeInnovative = () => {
   };
 
   return (
-    <div className="bg-black text-white font-sans overflow-x-hidden">
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
-        
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-        }
-
-        body {
-          overflow-x: hidden;
-        }
-
-        .font-display {
-          font-family: 'Space Grotesk', sans-serif;
-        }
-
-        .font-mono {
-          font-family: 'JetBrains Mono', monospace;
-        }
-
-        .custom-cursor {
-          position: fixed;
-          width: 20px;
-          height: 20px;
-          border: 2px solid #06b6d4;
-          border-radius: 50%;
-          pointer-events: none;
-          z-index: 9999;
-          transition: transform 0.2s, width 0.2s, height 0.2s;
-          mix-blend-mode: difference;
-        }
-
-        .custom-cursor-follower {
-          position: fixed;
-          width: 8px;
-          height: 8px;
-          background: #06b6d4;
-          border-radius: 50%;
-          pointer-events: none;
-          z-index: 9998;
-          transition: transform 0.15s ease-out;
-        }
-
-        .glitch {
-          position: relative;
-          animation: glitch-skew 2s infinite;
-        }
-
-        .glitch::before,
-        .glitch::after {
-          content: attr(data-text);
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-        }
-
-        .glitch::before {
-          left: 2px;
-          text-shadow: -2px 0 #ff00de;
-          clip: rect(24px, 550px, 90px, 0);
-          animation: glitch-anim 3s infinite linear alternate-reverse;
-        }
-
-        .glitch::after {
-          left: -2px;
-          text-shadow: -2px 0 #00fff9;
-          clip: rect(85px, 550px, 140px, 0);
-          animation: glitch-anim 2.5s infinite linear alternate-reverse;
-        }
-
-        @keyframes glitch-anim {
-          0% { clip: rect(39px, 9999px, 64px, 0); }
-          20% { clip: rect(96px, 9999px, 22px, 0); }
-          40% { clip: rect(8px, 9999px, 85px, 0); }
-          60% { clip: rect(43px, 9999px, 71px, 0); }
-          80% { clip: rect(18px, 9999px, 38px, 0); }
-          100% { clip: rect(74px, 9999px, 6px, 0); }
-        }
-
-        @keyframes glitch-skew {
-          0% { transform: skew(0deg); }
-          10% { transform: skew(2deg); }
-          20% { transform: skew(-2deg); }
-          30% { transform: skew(1deg); }
-          40% { transform: skew(-1deg); }
-          50% { transform: skew(0deg); }
-          100% { transform: skew(0deg); }
-        }
-
-        .floating {
-          animation: floating 6s ease-in-out infinite;
-        }
-
-        @keyframes floating {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          25% { transform: translateY(-20px) rotate(2deg); }
-          50% { transform: translateY(0px) rotate(0deg); }
-          75% { transform: translateY(20px) rotate(-2deg); }
-        }
-
-        .rotate-3d {
-          animation: rotate3d 20s linear infinite;
-          transform-style: preserve-3d;
-        }
-
-        @keyframes rotate3d {
-          from { transform: rotateX(0deg) rotateY(0deg); }
-          to { transform: rotateX(360deg) rotateY(360deg); }
-        }
-
-        .parallax-layer {
-          transition: transform 0.1s ease-out;
-        }
-
-        .morphing-shape {
-          animation: morph 8s ease-in-out infinite;
-        }
-
-        @keyframes morph {
-          0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-          25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
-          50% { border-radius: 60% 40% 30% 70% / 30% 70% 40% 60%; }
-          75% { border-radius: 40% 70% 60% 30% / 70% 50% 60% 30%; }
-        }
-
-        .text-gradient {
-          background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #8b5cf6 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          animation: gradient-shift 3s ease infinite;
-          background-size: 200% 200%;
-        }
-
-        @keyframes gradient-shift {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-        }
-
-        .card-3d {
-          transform-style: preserve-3d;
-          transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        .card-3d:hover {
-          transform: rotateY(10deg) rotateX(10deg) scale(1.05);
-        }
-
-        .grid-broken {
-          display: grid;
-          grid-template-columns: repeat(12, 1fr);
-          gap: 2rem;
-        }
-
-        .span-7 { grid-column: span 7; }
-        .span-5 { grid-column: span 5; }
-        .span-8 { grid-column: span 8; }
-        .span-4 { grid-column: span 4; }
-
-        .hero-shape {
-          position: absolute;
-          background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(59, 130, 246, 0.1));
-          filter: blur(60px);
-        }
-
-        .scroll-indicator {
-          position: fixed;
-          top: 0;
-          left: 0;
-          height: 4px;
-          background: linear-gradient(90deg, #06b6d4, #3b82f6, #8b5cf6);
-          z-index: 1000;
-          transition: width 0.1s;
-        }
-
-        .nav-menu-creative {
-          backdrop-filter: blur(20px);
-          background: rgba(0, 0, 0, 0.8);
-          border: 1px solid rgba(6, 182, 212, 0.2);
-        }
-
-        .magnetic-button {
-          transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        @media (max-width: 768px) {
-          .grid-broken {
-            grid-template-columns: 1fr;
-          }
-          .span-7, .span-5, .span-8, .span-4 {
-            grid-column: span 1;
-          }
-        }
-
-        .holographic {
-          position: relative;
-          overflow: hidden;
-        }
-
-        .holographic::before {
-          content: '';
-          position: absolute;
-          top: -50%;
-          left: -50%;
-          width: 200%;
-          height: 200%;
-          background: linear-gradient(45deg, transparent, rgba(6, 182, 212, 0.1), transparent);
-          animation: holographic-shine 3s linear infinite;
-        }
-
-        @keyframes holographic-shine {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-
-        .typing-animation {
-          overflow: hidden;
-          border-right: 2px solid #06b6d4;
-          white-space: nowrap;
-          animation: typing 3.5s steps(40) 1s 1 normal both, blink 0.75s step-end infinite;
-        }
-
-        @keyframes typing {
-          from { width: 0; }
-          to { width: 100%; }
-        }
-
-        @keyframes blink {
-          50% { border-color: transparent; }
-        }
-      `}</style>
-
+    <div className="bg-obsidian text-platinum font-body overflow-x-hidden relative min-h-screen">
+      
+      {/* GLOBAL BACKGROUND & WATERMARK */}
+      <div className="fixed inset-0 z-0 pointer-events-none flex items-center justify-center overflow-hidden">
+         <img src="/Quinto_Eje_logo_ALTA_CALIDAD.png" alt="Quinto Eje Watermark" className="w-[150vw] md:w-[80vw] opacity-5 object-contain" />
+      </div>
+      
       {/* Scroll Progress */}
-      <div className="scroll-indicator" style={{ width: `${scrollProgress}%` }} />
+      <motion.div 
+        className="fixed top-0 left-0 h-1 bg-gradient-to-r from-neon to-blue-500 z-[1000]" 
+        style={{ width: `${scrollProgress}%` }} 
+      />
 
       {/* Particle Canvas */}
-      <canvas ref={canvasRef} className="fixed top-0 left-0 w-full h-full pointer-events-none z-0" />
+      <canvas ref={canvasRef} className="fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-40" />
 
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 nav-menu-creative">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex justify-between items-center">
+      <nav className="fixed top-0 w-full z-50 glassmorphism-strong border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-6 py-8 flex justify-between items-center">
             <div className="flex items-center space-x-4 cursor-pointer group" onClick={() => scrollToSection('inicio')}>
-              <div className="relative w-16 h-16 flex items-center justify-center">
-                <svg width="64" height="64" viewBox="0 0 64 64" className="group-hover:scale-110 transition-transform duration-500">
-                  <defs>
-                    <linearGradient id="pentagonGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" style={{ stopColor: '#06b6d4', stopOpacity: 1 }} />
-                      <stop offset="100%" style={{ stopColor: '#3b82f6', stopOpacity: 1 }} />
-                    </linearGradient>
-                  </defs>
-                  <polygon
-                    points="32,8 58,26 48,54 16,54 6,26"
-                    fill="url(#pentagonGradient)"
-                    stroke="#06b6d4"
-                    strokeWidth="1"
-                  />
-                </svg>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="font-display font-black text-white text-xl mt-1">Q5</span>
-                </div>
-              </div>
-              <div>
-                <h1 className="font-display font-bold text-2xl text-gradient">Quinto Eje</h1>
-                <p className="text-xs text-cyan-400 font-mono">// Ingeniería</p>
-              </div>
+              <img src="/Quinto_Eje_logo_ALTA_CALIDAD.png" alt="Quinto Eje Logo" className="w-32 md:w-48 h-auto object-contain group-hover:scale-110 transition-transform duration-500 drop-shadow-[0_0_15px_rgba(0,242,254,0.6)]" />
             </div>
 
-            <div className="hidden md:flex space-x-8 font-display">
+            <div className="hidden md:flex space-x-10 font-display">
               {['inicio', 'servicios', 'proyectos', 'capacitaciones', 'asesoramiento', 'contacto'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item)}
-                  className={`capitalize text-sm font-medium transition-all hover:text-cyan-400 relative group ${activeSection === item ? 'text-cyan-400' : 'text-gray-400'
-                    }`}
+                  className={`capitalize text-base md:text-lg font-bold transition-all hover:text-neon relative group ${activeSection === item ? 'text-neon drop-shadow-[0_0_8px_rgba(0,242,254,0.8)]' : 'text-gray-300'}`}
                 >
                   {item}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-600 group-hover:w-full transition-all duration-300"></span>
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-neon to-blue-600 group-hover:w-full transition-all duration-300"></span>
                 </button>
               ))}
             </div>
@@ -609,485 +361,294 @@ const QuintoEjeInnovative = () => {
             <button className="md:hidden text-gray-300" onClick={() => setMenuOpen(!menuOpen)}>
               {menuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
-          </div>
-
-          {menuOpen && (
-            <div className="md:hidden mt-6 pb-4 space-y-3">
+        </div>
+        {menuOpen && (
+            <div className="md:hidden bg-obsidian/95 backdrop-blur-xl border-t border-white/10 px-6 py-4 space-y-3">
               {['inicio', 'servicios', 'proyectos', 'capacitaciones', 'asesoramiento', 'contacto'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item)}
-                  className={`block w-full text-left px-4 py-3 rounded-lg capitalize font-display transition-all ${activeSection === item
-                    ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/40'
-                    : 'text-gray-400 hover:bg-white/5'
-                    }`}
+                  className="block w-full text-left py-3 capitalize font-display text-gray-300 hover:text-neon border-b border-white/5"
                 >
                   {item}
                 </button>
               ))}
             </div>
-          )}
-        </div>
+        )}
       </nav>
 
       {/* Hero Section */}
-      <section id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Animated Background Shapes */}
-        <div className="hero-shape w-96 h-96 rounded-full top-20 -left-20 morphing-shape" />
-        <div className="hero-shape w-80 h-80 rounded-full bottom-20 -right-20 morphing-shape" style={{ animationDelay: '2s' }} />
-
-        {/* Floating Geometric Shapes - Hidden on mobile */}
-        <div
-          className="hidden md:block absolute top-1/4 left-1/4 w-32 h-32 border-2 border-cyan-500/30 floating"
-          style={{
-            transform: `translate(${mousePosition.x * 30}px, ${mousePosition.y * 30}px) rotate(45deg)`,
-            transition: 'transform 0.3s ease-out'
-          }}
-        />
-        <div
-          className="hidden md:block absolute top-1/3 right-1/4 w-40 h-40 border-2 border-purple-500/30 rounded-full floating"
-          style={{
-            transform: `translate(${mousePosition.x * -40}px, ${mousePosition.y * -40}px)`,
-            transition: 'transform 0.3s ease-out',
-            animationDelay: '1s'
-          }}
-        />
-        <div
-          className="hidden lg:block absolute bottom-1/4 left-1/3 w-24 h-24 border-2 border-blue-500/30 floating"
-          style={{
-            transform: `translate(${mousePosition.x * 50}px, ${mousePosition.y * 50}px) rotate(30deg)`,
-            transition: 'transform 0.3s ease-out',
-            animationDelay: '2s',
-            clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)'
-          }}
-        />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20 sm:py-32 relative z-10">
-          <div className="text-center">
-            <div className="inline-block mb-4 sm:mb-6 px-4 sm:px-6 py-2 border border-cyan-500/40 rounded-full holographic">
-              <span className="text-cyan-400 text-xs sm:text-sm font-mono font-medium">
-                &lt;Ingeniero 5.0 / Santa Cruz, Bolivia&gt;
+      <section id="inicio" className="relative min-h-screen flex items-center justify-center pt-20 z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1 }}
+            className="text-left"
+          >
+            <div className="inline-block mb-6 px-6 py-2 border border-neon/40 rounded-full bg-white/5 backdrop-blur-md">
+              <span className="text-neon text-sm font-mono font-medium tracking-wider">
+                &lt; Ingeniería 5.0 / Santa Cruz, BO &gt;
               </span>
             </div>
 
-            <h1 className="font-display font-black text-4xl sm:text-6xl md:text-7xl lg:text-9xl mb-6 sm:mb-8 leading-tight px-4">
+            <h1 className="font-display font-black text-5xl sm:text-6xl md:text-7xl lg:text-8xl mb-8 leading-tight">
               {config?.heroTitle ? (
-                <span className="text-gradient">{config.heroTitle}</span>
+                <span className="text-gradient-premium">{config.heroTitle}</span>
               ) : (
                 <>
-                  <span className="text-gradient">Soluciones en</span>
+                  <span className="text-white">Soluciones en</span>
                   <br />
-                  <span className="text-gradient">Ingeniería</span>
+                  <span className="text-gradient-premium">Ingeniería</span>
                   <br />
-                  <span className="text-gradient">Inteligente</span>
+                  <span className="text-gradient-premium">Inteligente</span>
                 </>
               )}
             </h1>
 
-            <p className="text-base sm:text-xl md:text-2xl text-gray-400 mb-8 sm:mb-12 max-w-3xl mx-auto font-display font-light px-4 leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-400 mb-10 max-w-xl font-display font-light leading-relaxed">
               {config?.heroSubtitle || (
-                <>
-                  Transformamos ideas en realidad mediante <span className="text-cyan-400 font-semibold">desarrollo web</span>,
-                  <span className="text-purple-400 font-semibold"> agentes IA</span>, y
-                  <span className="text-blue-400 font-semibold"> tecnologías Industria 4.0</span>
-                </>
+                <>Transformamos ideas en realidad mediante desarrollo web, agentes IA y tecnologías Industria 4.0.</>
               )}
             </p>
 
-            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 sm:gap-6 px-4">
-              <button
-                onClick={() => scrollToSection('servicios')}
-                className="magnetic-button group px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-full font-display font-bold text-base sm:text-lg hover:shadow-2xl hover:shadow-cyan-500/50 transition-all relative overflow-hidden"
-              >
-                <span className="relative z-10 flex items-center justify-center gap-2">
-                  Explorar Servicios
-                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div className="flex flex-wrap gap-4">
+              <button onClick={() => scrollToSection('servicios')} className="px-8 py-4 bg-neon hover:bg-cyan-400 text-obsidian font-display font-bold text-lg rounded-xl transition-all shadow-[0_0_20px_rgba(0,242,254,0.4)] hover:shadow-[0_0_30px_rgba(0,242,254,0.6)] flex items-center gap-2">
+                Descubrir <ArrowRight className="w-5 h-5" />
               </button>
-
-              <button
-                onClick={() => scrollToSection('contacto')}
-                className="magnetic-button px-6 sm:px-8 py-3 sm:py-4 border-2 border-cyan-500 rounded-full font-display font-bold text-base sm:text-lg hover:bg-cyan-500/10 transition-all backdrop-blur-sm"
-              >
+              <button onClick={() => scrollToSection('contacto')} className="px-8 py-4 border border-neon/50 hover:bg-neon/10 text-platinum font-display font-bold text-lg rounded-xl transition-all backdrop-blur-md">
                 Contactar
               </button>
             </div>
+          </motion.div>
 
-            {/* 3D Rotating Pentagon - Responsive sizing */}
-            <div className="mt-12 sm:mt-20 flex justify-center">
-              <div
-                className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 relative"
-                style={{
-                  transform: `perspective(1000px) rotateX(${mousePosition.y * 15}deg) rotateY(${mousePosition.x * 15}deg)`,
-                  transition: 'transform 0.3s ease-out',
-                  transformStyle: 'preserve-3d'
-                }}
-              >
-                {/* Pentagon shape with 3D effect */}
-                <div
-                  className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 border-2 border-cyan-500/40 backdrop-blur-xl"
-                  style={{
-                    clipPath: 'polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)',
-                    transform: 'translateZ(0px)'
-                  }}
-                ></div>
-                <div
-                  className="absolute inset-4 border-2 border-cyan-500/20"
-                  style={{
-                    clipPath: 'polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)',
-                    transform: 'translateZ(20px)'
-                  }}
-                ></div>
-                <div
-                  className="absolute inset-8 border-2 border-cyan-500/10"
-                  style={{
-                    clipPath: 'polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)',
-                    transform: 'translateZ(40px)'
-                  }}
-                ></div>
-                <div className="absolute inset-0 flex items-center justify-center" style={{ transform: 'translateZ(60px)' }}>
-                  <div className="text-4xl sm:text-5xl md:text-6xl font-display font-black text-gradient">Q5</div>
-                </div>
-              </div>
-            </div>
-          </div>
+          {/* Huge 3D Floating Logo */}
+          <motion.div 
+            className="relative flex justify-center items-center"
+            animate={{ y: [-15, 15, -15] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <div className="absolute w-[120%] h-[120%] bg-neon/10 blur-[100px] rounded-full pointer-events-none"></div>
+            <img 
+              src="/Quinto_Eje_logo_ALTA_CALIDAD.png" 
+              alt="Quinto Eje" 
+              className="w-full max-w-2xl lg:max-w-3xl object-contain drop-shadow-[0_0_80px_rgba(0,242,254,0.8)]"
+            />
+          </motion.div>
         </div>
       </section>
 
-      {/* Services Section - Broken Grid */}
-      <section id="servicios" className="py-16 sm:py-24 md:py-32 relative">
+      {/* Services Section - Bento Grid */}
+      <section id="servicios" className="py-24 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12 sm:mb-16 md:mb-20">
-            <h2 className="font-display font-black text-4xl sm:text-5xl md:text-6xl mb-4 sm:mb-6">
-              <span className="text-gradient">Servicios</span>
-            </h2>
-            <p className="text-gray-400 text-base sm:text-lg md:text-xl font-display max-w-3xl mx-auto px-4">
-              Soluciones tecnológicas especializadas para impulsar tu transformación digital
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-16"
+          >
+            <h2 className="font-display font-black text-5xl md:text-6xl mb-6 text-gradient-premium">Servicios</h2>
+            <p className="text-gray-400 text-lg md:text-xl font-display max-w-2xl">
+              Soluciones tecnológicas disruptivas diseñadas para escalar.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-            {services.map((service, idx) => (
-              <div
-                key={service.id || idx}
-                className="card-3d holographic bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl sm:rounded-3xl p-6 sm:p-8 group transition-all duration-500"
-                style={{
-                  animationDelay: `${idx * 0.2}s`,
-                  maxHeight: expandedService === (service.id || idx) ? '1000px' : '400px',
-                  overflow: 'hidden'
-                }}
-              >
-                <div className={`w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br ${service.color} rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform text-white relative overflow-hidden`}>
-                  <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
-                  <div className="relative z-10">{service.icon || '🚀'}</div>
-                </div>
+          <div className="flex flex-col lg:flex-row w-full h-auto lg:h-[600px] gap-4">
+            {services.map((service, idx) => {
+              const customIcons = ['/icon_web.png', '/icon_ai.png', '/icon_iot.png', '/icon_data.png'];
+              const iconSrc = customIcons[idx % 4];
+              return (
+                <motion.div
+                  key={service.id || idx}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="relative flex-1 lg:hover:flex-[2.5] hover:flex-none transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] overflow-hidden rounded-3xl group border border-white/10 min-h-[300px]"
+                >
+                  {/* Background Image / Overlay */}
+                  <img src={iconSrc} alt="Service Background" className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-40 group-hover:scale-110 transition-all duration-700 mix-blend-screen" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/40 to-transparent"></div>
+                  
+                  {/* Content Container */}
+                  <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end">
+                    
+                    {/* Custom 3D Icon Generated by AI */}
+                    <div className="mb-6 transform group-hover:-translate-y-4 transition-transform duration-700">
+                      <img src={iconSrc} alt="Service Icono" className="w-20 h-20 md:w-28 md:h-28 object-contain drop-shadow-[0_0_20px_rgba(0,242,254,0.6)] group-hover:scale-110 group-hover:rotate-6 transition-all duration-700" />
+                    </div>
 
-                {service.image && (
-                  <div className="mb-4 rounded-xl overflow-hidden">
-                    <img src={service.image} alt={service.title} className="w-full h-48 object-cover" />
+                    <div className="transform group-hover:-translate-y-4 transition-transform duration-700">
+                      <span className="px-3 py-1 bg-neon/10 border border-neon/30 text-neon rounded-full font-mono text-xs mb-4 inline-block shadow-[0_0_10px_rgba(0,242,254,0.2)]">
+                        Servicio
+                      </span>
+                      <h3 className="font-display font-black text-2xl md:text-3xl lg:text-4xl text-white mb-2 whitespace-normal break-words leading-tight">
+                        {service.title}
+                      </h3>
+                      
+                      {/* Detailed info visible on hover */}
+                      <div className="h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-700 ease-in-out overflow-hidden mt-4 lg:w-[400px]">
+                        <p className="text-gray-300 font-display text-sm md:text-base mb-4 leading-relaxed">
+                          {service.description}
+                        </p>
+                        {service.detailedInfo && (
+                          <div className="p-4 bg-black/40 backdrop-blur-md rounded-xl border border-white/5">
+                            <p className="text-gray-400 text-xs md:text-sm font-display">
+                              {service.detailedInfo}
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
                   </div>
-                )}
-
-                <h3 className="font-display font-bold text-2xl sm:text-3xl mb-3 sm:mb-4 text-white group-hover:text-gradient transition-all">
-                  {service.title}
-                </h3>
-
-                <p className="text-gray-400 font-display leading-relaxed text-base sm:text-lg mb-4">
-                  {service.description}
-                </p>
-
-                {/* Contenido expandible */}
-                <div
-                  className="transition-all duration-500 overflow-hidden"
-                  style={{
-                    maxHeight: expandedService === (service.id || idx) ? '2000px' : '0px',
-                    opacity: expandedService === (service.id || idx) ? 1 : 0
-                  }}
-                >
-                  {service.detailedInfo && (
-                    <div className="mt-6 p-4 bg-white/5 rounded-xl border border-cyan-500/20">
-                      <h4 className="font-display font-bold text-cyan-400 mb-3">Detalles del Servicio</h4>
-                      <p className="text-gray-300 font-display text-sm sm:text-base leading-relaxed">
-                        {service.detailedInfo}
-                      </p>
-                    </div>
-                  )}
-
-                  {service.detailImage && (
-                    <div className="mt-4 rounded-xl overflow-hidden">
-                      <img src={service.detailImage} alt={`${service.title} - Detalle`} className="w-full h-64 object-cover" />
-                    </div>
-                  )}
-
-                  {service.url && (
-                    <div className="mt-4">
-                      <a
-                        href={service.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-display font-medium"
-                      >
-                        Más información <ChevronRight className="w-4 h-4" />
-                      </a>
-                    </div>
-                  )}
-                </div>
-
-                <button
-                  onClick={() => toggleService(service.id || idx)}
-                  className="mt-4 sm:mt-6 flex items-center text-cyan-400 font-display font-medium group-hover:gap-2 transition-all relative z-20"
-                >
-                  {expandedService === (service.id || idx) ? (
-                    <>
-                      Ver menos <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 transform rotate-90 transition-transform" />
-                    </>
-                  ) : (
-                    <>
-                      Ver más <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform" />
-                    </>
-                  )}
-                </button>
-              </div>
-            ))}
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Projects Section - Asymmetric Layout */}
-      <section id="proyectos" className="py-16 sm:py-24 md:py-32 relative">
+      {/* Projects Section */}
+      <section id="proyectos" className="py-24 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12 sm:mb-16 md:mb-20">
-            <h2 className="font-display font-black text-4xl sm:text-5xl md:text-6xl mb-4 sm:mb-6">
-              <span className="text-gradient">Proyectos</span>
-            </h2>
-            <p className="text-gray-400 text-base sm:text-lg md:text-xl font-display max-w-3xl mx-auto px-4">
-              Casos de éxito que demuestran nuestra experiencia técnica
-            </p>
-          </div>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-16"
+          >
+            <h2 className="font-display font-black text-5xl md:text-6xl mb-6 text-gradient-premium">Proyectos</h2>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-            {projects.map((project, idx) => (
-              <div
-                key={project.id || idx}
-                className="card-3d group relative overflow-hidden rounded-2xl sm:rounded-3xl transition-all duration-500"
-                style={{
-                  background: project.gradient,
-                  minHeight: expandedProject === (project.id || idx) ? '600px' : '300px'
-                }}
-              >
-                {/* Background image if exists */}
-                {project.image && (
-                  <div
-                    className="absolute inset-0 bg-cover bg-center transition-opacity duration-500"
-                    style={{
-                      backgroundImage: `url(${project.image})`,
-                      opacity: expandedProject === (project.id || idx) ? 0.3 : 0.5
-                    }}
-                  />
-                )}
+          <div className="flex flex-col lg:flex-row w-full h-auto lg:h-[600px] gap-4">
+            {projects.map((project, idx) => {
+              const customIcons = ['/icon_iot.png', '/icon_ai.png', '/icon_web.png', '/icon_data.png'];
+              const iconSrc = customIcons[idx % 4];
+              return (
+                <motion.div
+                  key={project.id || idx}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="relative flex-1 lg:hover:flex-[2.5] hover:flex-none transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] overflow-hidden rounded-3xl group border border-white/10 min-h-[300px]"
+                  style={{ background: project.gradient || '#0F172A' }}
+                >
+                  {/* Background Image / Overlay */}
+                  <img src={iconSrc} alt="Proyecto Background" className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-40 group-hover:scale-110 transition-all duration-700 mix-blend-screen" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/40 to-transparent"></div>
+                  
+                  {/* Content Container */}
+                  <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end">
+                    
+                    {/* Custom 3D Icon Generated by AI */}
+                    <div className="mb-6 transform group-hover:-translate-y-4 transition-transform duration-700">
+                      <img src={iconSrc} alt="Proyecto Icono" className="w-20 h-20 md:w-28 md:h-28 object-contain drop-shadow-[0_0_20px_rgba(0,242,254,0.6)] group-hover:scale-110 group-hover:rotate-6 transition-all duration-700" />
+                    </div>
 
-                <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-all duration-500"></div>
-
-                {/* Floating geometric shape on hover */}
-                <div className="absolute top-4 right-4 sm:top-8 sm:right-8 w-12 h-12 sm:w-20 sm:h-20 border-2 border-white/20 rotate-45 group-hover:rotate-90 group-hover:scale-150 transition-all duration-700"></div>
-
-                <div className="relative h-full p-6 sm:p-8 flex flex-col justify-between">
-                  <div>
-                    <div className="mb-3 sm:mb-4">
-                      <span className="px-3 sm:px-4 py-1 sm:py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white text-xs sm:text-sm font-mono">
+                    <div className="transform group-hover:-translate-y-4 transition-transform duration-700">
+                      <span className="px-3 py-1 bg-neon/10 border border-neon/30 text-neon rounded-full font-mono text-xs mb-4 inline-block shadow-[0_0_10px_rgba(0,242,254,0.2)]">
                         {project.category}
                       </span>
+                      <h3 className="font-display font-black text-2xl md:text-3xl lg:text-4xl text-white mb-2 whitespace-normal break-words leading-tight">
+                        {project.title}
+                      </h3>
+                      
+                      {/* Detailed info visible on hover */}
+                      <div className="h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-700 ease-in-out overflow-hidden mt-4 lg:w-[400px]">
+                        <p className="text-gray-300 font-display text-sm md:text-base mb-4 leading-relaxed line-clamp-3">
+                          {project.description}
+                        </p>
+                        {project.detailedInfo && (
+                          <div className="p-4 bg-black/40 backdrop-blur-md rounded-xl border border-white/5">
+                            <p className="text-gray-400 text-xs md:text-sm font-display line-clamp-4">
+                              {project.detailedInfo}
+                            </p>
+                          </div>
+                        )}
+                        <button className="mt-4 flex items-center gap-2 text-neon font-display font-bold text-sm hover:gap-3 transition-all">
+                          Ver caso de estudio <ArrowRight size={16} />
+                        </button>
+                      </div>
                     </div>
-                    <h3 className="font-display font-bold text-2xl sm:text-3xl mb-2 sm:mb-3 text-white group-hover:text-cyan-400 transition-colors">
-                      {project.title}
-                    </h3>
-                    <p className="text-gray-300 font-display text-sm sm:text-base md:text-lg mb-4">
-                      {project.description}
-                    </p>
 
-                    {/* Contenido expandible */}
-                    <div
-                      className="transition-all duration-500 overflow-hidden"
-                      style={{
-                        maxHeight: expandedProject === (project.id || idx) ? '1000px' : '0px',
-                        opacity: expandedProject === (project.id || idx) ? 1 : 0
-                      }}
-                    >
-                      {project.detailedInfo && (
-                        <div className="mt-4 p-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
-                          <h4 className="font-display font-bold text-cyan-400 mb-3 text-sm sm:text-base">Detalles del Proyecto</h4>
-                          <p className="text-gray-200 font-display text-sm leading-relaxed">
-                            {project.detailedInfo}
-                          </p>
-                        </div>
-                      )}
-
-                      {project.detailImage && (
-                        <div className="mt-4 rounded-xl overflow-hidden">
-                          <img src={project.detailImage} alt={`${project.title} - Detalle`} className="w-full h-48 object-cover" />
-                        </div>
-                      )}
-
-                      {project.url && (
-                        <div className="mt-4">
-                          <a
-                            href={project.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-display font-medium text-sm"
-                          >
-                            Ver proyecto completo <ArrowRight className="w-4 h-4" />
-                          </a>
-                        </div>
-                      )}
-                    </div>
                   </div>
-
-                  <button
-                    onClick={() => toggleProject(project.id || idx)}
-                    className="mt-4 sm:mt-6 flex items-center text-cyan-400 font-display font-medium opacity-100 transition-all text-sm sm:text-base"
-                  >
-                    {expandedProject === (project.id || idx) ? (
-                      <>
-                        Ver menos <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 transform rotate-90 transition-transform" />
-                      </>
-                    ) : (
-                      <>
-                        Ver detalles <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 transition-transform" />
-                      </>
-                    )}
-                  </button>
-                </div>
-              </div>
-            ))}
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Capacitaciones Section - Simple and Clean */}
-      <section id="capacitaciones" className="py-16 sm:py-24 md:py-32 relative">
+      {/* Capacitaciones */}
+      <section id="capacitaciones" className="py-24 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12 sm:mb-16 md:mb-20">
-            <h2 className="font-display font-black text-4xl sm:text-5xl md:text-6xl mb-4 sm:mb-6">
-              <span className="text-gradient">Capacitaciones</span>
-            </h2>
-            <p className="text-gray-400 text-base sm:text-lg md:text-xl font-display max-w-3xl mx-auto px-4">
-              Formación especializada para profesionales y equipos técnicos
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 px-4">
-            {capacitaciones.map((curso, idx) => (
-              <div
-                key={idx}
-                className="w-full card-3d bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl sm:rounded-3xl overflow-hidden group hover:border-cyan-500/40 transition-all flex flex-col h-full"
-              >
-                {/* Image Section - Smart Fit (No cropping) */}
-                {curso.image && (
-                  <div className="w-full h-64 sm:h-96 relative overflow-hidden bg-gray-900 group">
-                    {/* Layer 1: Blurred Background (fills space) */}
-                    <div className="absolute inset-0">
-                      <img
-                        src={formatImageUrl(curso.image)}
-                        alt=""
-                        className="w-full h-full object-cover opacity-30 blur-xl scale-110"
-                      />
-                    </div>
-
-                    {/* Layer 2: Full Image (contained, no cropping) */}
-                    <div className="absolute inset-0 flex items-center justify-center p-4 z-10 transition-transform duration-700 group-hover:scale-105">
-                      <img
-                        src={formatImageUrl(curso.image)}
-                        alt={curso.title}
-                        className="w-full h-full object-contain drop-shadow-2xl"
-                        onError={(e) => {
-                          e.target.style.opacity = '0.5';
-                        }}
-                      />
-                    </div>
-
-                    {/* Badge */}
-                    <div className="absolute top-4 left-4 z-20">
-                      <span className={`px-4 py-1.5 rounded-full text-xs sm:text-sm font-display font-medium backdrop-blur-md shadow-lg ${curso.level === 'Principiante' ? 'bg-green-500/90 text-white' :
-                        curso.level === 'Intermedio' ? 'bg-yellow-500/90 text-white' :
-                          'bg-red-500/90 text-white'
-                        }`}>
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-16">
+            <h2 className="font-display font-black text-5xl md:text-6xl mb-6 text-gradient-premium">Capacitaciones</h2>
+          </motion.div>
+          <div className="flex flex-col lg:flex-row w-full h-auto lg:h-[600px] gap-4">
+             {capacitaciones.map((curso, idx) => (
+                <motion.div 
+                  key={idx} 
+                  initial={{ opacity: 0, y: 30 }} 
+                  whileInView={{ opacity: 1, y: 0 }} 
+                  viewport={{ once: true }} 
+                  transition={{ delay: idx*0.1 }} 
+                  className="relative flex-1 lg:hover:flex-[2.5] hover:flex-none transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] overflow-hidden rounded-3xl group border border-white/10 min-h-[300px]"
+                >
+                  {/* Background Image / Overlay */}
+                  {curso.image && (
+                    <img src={formatImageUrl(curso.image)} alt={curso.title} className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-40 group-hover:scale-110 transition-all duration-700 mix-blend-overlay" />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/40 to-transparent"></div>
+                  
+                  {/* Content Container */}
+                  <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end">
+                    <div className="transform group-hover:-translate-y-4 transition-transform duration-700">
+                      
+                      <span className="px-3 py-1 bg-neon/10 border border-neon/30 text-neon rounded-full font-mono text-xs mb-4 inline-block shadow-[0_0_10px_rgba(0,242,254,0.2)]">
                         {curso.level}
                       </span>
-                    </div>
-                  </div>
-                )}
-
-                {/* Content Section */}
-                <div className="p-6 sm:p-8 flex flex-col justify-between flex-grow">
-                  <div>
-                    <div className="flex items-center justify-between mb-6">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center shadow-lg shadow-cyan-500/20">
-                          <BookOpen className="w-5 h-5 text-white" />
+                      
+                      <h3 className="font-display font-black text-2xl md:text-3xl lg:text-4xl text-white mb-2 whitespace-normal break-words leading-tight">
+                        {curso.title}
+                      </h3>
+                      
+                      {/* Detailed info visible on hover */}
+                      <div className="h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-700 ease-in-out overflow-hidden mt-4 lg:w-[400px]">
+                        <div className="flex gap-4 mb-4 text-sm font-mono text-neon">
+                          <span className="flex items-center gap-1"><Calendar size={14}/> {curso.date}</span>
+                          <span className="flex items-center gap-1"><Clock size={14}/> {curso.duration}</span>
                         </div>
-                        <h3 className="font-display font-bold text-2xl sm:text-3xl text-white group-hover:text-cyan-400 transition-colors leading-tight">
-                          {curso.title}
-                        </h3>
+                        <p className="text-gray-300 font-display text-sm md:text-base mb-4 leading-relaxed">
+                          {curso.description}
+                        </p>
+                        {/* El boton de mas informacion fue eliminado por solicitud */}
                       </div>
                     </div>
-
-                    <div className="grid grid-cols-2 gap-4 mb-6">
-                      <div className="flex items-center gap-3 text-gray-300 bg-white/5 p-3 rounded-lg border border-white/5">
-                        <Calendar size={18} className="text-cyan-400" />
-                        <span className="font-mono text-sm">{curso.date}</span>
-                      </div>
-                      <div className="flex items-center gap-3 text-gray-300 bg-white/5 p-3 rounded-lg border border-white/5">
-                        <Clock size={18} className="text-cyan-400" />
-                        <span className="font-mono text-sm">{curso.duration}</span>
-                      </div>
-                    </div>
-
-                    <p className="text-gray-300 font-display text-sm sm:text-base leading-relaxed mb-8 border-l-2 border-cyan-500/30 pl-4">
-                      {curso.description}
-                    </p>
                   </div>
-
-                  {curso.title.toLowerCase().includes('python') ? (
-                    <a
-                      href={curso.url || '#'}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block w-full text-center px-6 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 rounded-xl text-white font-display font-bold text-lg shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2"
-                    >
-                      Más información
-                      <ArrowRight className="w-5 h-5" />
-                    </a>
-                  ) : (
-                    <button
-                      onClick={() => scrollToSection('contacto')}
-                      className="w-full text-center px-6 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 rounded-xl text-white font-display font-bold text-lg shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2"
-                    >
-                      Más información
-                      <ArrowRight className="w-5 h-5" />
-                    </button>
-                  )}
-                </div>
-              </div>
-            ))}
+                </motion.div>
+             ))}
           </div>
         </div>
       </section>
 
+
       {/* Asesoramiento Section */}
-      <section id="asesoramiento" className="py-16 sm:py-24 md:py-32 relative">
+      <section id="asesoramiento" className="py-24 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12 sm:mb-16 md:mb-20">
             <h2 className="font-display font-black text-4xl sm:text-5xl md:text-6xl mb-4 sm:mb-6">
-              <span className="text-gradient">Asesoramiento</span>
+              <span className="text-gradient-premium">Asesoramiento</span>
             </h2>
             <p className="text-gray-400 text-base sm:text-lg md:text-xl font-display max-w-3xl mx-auto px-4">
               Orientación profesional en tus proyectos académicos, profesionales, técnicos e industriales
             </p>
           </div>
 
-          <div className="card-3d bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl sm:rounded-3xl overflow-hidden group hover:border-cyan-500/40 transition-all">
+          <div className="glassmorphism border border-white/10 rounded-2xl sm:rounded-3xl overflow-hidden group hover:border-cyan-500/40 transition-all">
             <div className="flex flex-col lg:flex-row">
               {/* Image */}
               <div className="w-full lg:w-1/2 min-h-[300px] lg:min-h-[400px] relative border-b lg:border-b-0 lg:border-r border-white/10 overflow-hidden group">
@@ -1104,7 +665,7 @@ const QuintoEjeInnovative = () => {
 
               {/* Text Description */}
               <div className="w-full lg:w-1/2 p-8 sm:p-12 flex flex-col justify-center">
-                <h3 className="font-display font-bold text-2xl sm:text-3xl text-white mb-6 group-hover:text-cyan-400 transition-colors">
+                <h3 className="font-display font-bold text-2xl sm:text-3xl text-white mb-6 group-hover:text-neon transition-colors">
                   Asesoramiento profesional en tus proyectos
                 </h3>
                 <p className="text-gray-300 font-display text-base sm:text-lg leading-relaxed mb-6">
@@ -1112,21 +673,21 @@ const QuintoEjeInnovative = () => {
                 </p>
                 <ul className="space-y-4 mb-8">
                   <li className="flex items-start gap-3">
-                     <CheckCircle2 className="w-6 h-6 text-cyan-400 shrink-0" />
+                     <CheckCircle2 className="w-6 h-6 text-neon shrink-0" />
                      <span className="text-gray-300 font-display">Asesoramiento académico en tus proyectos educativos.</span>
                   </li>
                   <li className="flex items-start gap-3">
-                     <CheckCircle2 className="w-6 h-6 text-cyan-400 shrink-0" />
+                     <CheckCircle2 className="w-6 h-6 text-neon shrink-0" />
                      <span className="text-gray-300 font-display">Asesoramiento de alto nivel en tus proyectos de ingeniería y tecnología y análisis de datos.</span>
                   </li>
                   <li className="flex items-start gap-3">
-                     <CheckCircle2 className="w-6 h-6 text-cyan-400 shrink-0" />
+                     <CheckCircle2 className="w-6 h-6 text-neon shrink-0" />
                      <span className="text-gray-300 font-display">Asesoramiento aplicado en herramientas de IA.</span>
                   </li>
                 </ul>
                 <button
                   onClick={() => scrollToSection('contacto')}
-                  className="w-fit magnetic-button px-6 sm:px-8 py-3 sm:py-4 border-2 border-cyan-500 rounded-lg sm:rounded-xl font-display font-bold text-base sm:text-lg hover:bg-cyan-500 hover:text-white transition-all text-cyan-400"
+                  className="w-fit magnetic-button px-6 sm:px-8 py-3 sm:py-4 border-2 border-neon rounded-lg sm:rounded-xl font-display font-bold text-base sm:text-lg hover:bg-neon hover:text-obsidian transition-all text-neon"
                 >
                   Solicitar Evaluación Exclusiva
                 </button>
@@ -1136,216 +697,80 @@ const QuintoEjeInnovative = () => {
         </div>
       </section>
 
-      {/* Contact Section - Experimental */}
-      <section id="contacto" className="py-16 sm:py-24 md:py-32 relative">
+      {/* Asesoramiento & Contacto */}
+      <section id="contacto" className="py-24 relative z-10 border-t border-white/5">
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12 sm:mb-16 md:mb-20">
-            <h2 className="font-display font-black text-4xl sm:text-5xl md:text-6xl mb-4 sm:mb-6">
-              <span className="text-gradient">Hablemos</span>
-            </h2>
-            <p className="text-gray-400 text-base sm:text-lg md:text-xl font-display max-w-3xl mx-auto px-4">
-              ¿Tienes un proyecto en mente? Conversemos sobre cómo podemos ayudarte
-            </p>
-          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
+              <h2 className="font-display font-black text-5xl md:text-6xl mb-6 text-gradient-premium">Hablemos</h2>
+              <p className="text-gray-400 text-lg mb-12 font-display">Transformamos la complejidad técnica en soluciones empresariales elegantes.</p>
+              
+              <div className="space-y-6">
+                {[
+                  { icon: <Mail className="w-6 h-6" />, label: 'Email', value: config?.contactEmail || 'quintoejeingenieria@gmail.com' },
+                  { icon: <Phone className="w-6 h-6" />, label: 'Teléfono', value: config?.phone || '+591 7000-0000' },
+                  { icon: <MapPin className="w-6 h-6" />, label: 'Ubicación', value: config?.location || 'Santa Cruz, Bolivia' }
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-center gap-6 p-4 glassmorphism rounded-2xl">
+                    <div className="w-12 h-12 bg-neon/10 text-neon rounded-xl flex items-center justify-center">
+                      {item.icon}
+                    </div>
+                    <div>
+                      <div className="text-sm text-gray-400 font-mono">{item.label}</div>
+                      <div className="text-lg font-display font-medium text-white">{item.value}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-start">
-            <div className="relative order-2 lg:order-1">
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-2xl sm:rounded-3xl blur-3xl"></div>
-              <form onSubmit={handleSubmit} className="relative card-3d bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl sm:rounded-3xl p-6 sm:p-10 space-y-4 sm:space-y-6">
+            <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
+              <form onSubmit={handleSubmit} className="glassmorphism-strong rounded-3xl p-8 space-y-6">
                 <div>
-                  <label className="block text-gray-300 font-display font-medium mb-2 sm:mb-3 text-sm sm:text-base">Nombre</label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-black/30 border border-cyan-500/30 rounded-lg sm:rounded-xl text-white font-display text-sm sm:text-base focus:outline-none focus:border-cyan-400 transition-all"
-                    placeholder="Tu nombre completo"
-                  />
+                  <label className="block text-gray-300 font-display mb-2 text-sm">Nombre</label>
+                  <input type="text" required value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} className="w-full px-4 py-3 bg-black/50 border border-white/10 rounded-xl text-white font-display focus:border-neon outline-none transition-colors" />
                 </div>
-
                 <div>
-                  <label className="block text-gray-300 font-display font-medium mb-2 sm:mb-3 text-sm sm:text-base">Email</label>
-                  <input
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-black/30 border border-cyan-500/30 rounded-lg sm:rounded-xl text-white font-display text-sm sm:text-base focus:outline-none focus:border-cyan-400 transition-all"
-                    placeholder="quintoejeingenieria@gmail.com"
-                  />
+                  <label className="block text-gray-300 font-display mb-2 text-sm">Email</label>
+                  <input type="email" required value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} className="w-full px-4 py-3 bg-black/50 border border-white/10 rounded-xl text-white font-display focus:border-neon outline-none transition-colors" />
                 </div>
-
                 <div>
-                  <label className="block text-gray-300 font-display font-medium mb-2 sm:mb-3 text-sm sm:text-base">Mensaje</label>
-                  <textarea
-                    required
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    rows="5"
-                    className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-black/30 border border-cyan-500/30 rounded-lg sm:rounded-xl text-white font-display text-sm sm:text-base focus:outline-none focus:border-cyan-400 transition-all resize-none"
-                    placeholder="Cuéntanos sobre tu proyecto..."
-                  />
+                  <label className="block text-gray-300 font-display mb-2 text-sm">Mensaje</label>
+                  <textarea required value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} rows="4" className="w-full px-4 py-3 bg-black/50 border border-white/10 rounded-xl text-white font-display focus:border-neon outline-none transition-colors resize-none" />
                 </div>
-
-                <button
-                  type="submit"
-                  className="w-full magnetic-button px-6 sm:px-8 py-4 sm:py-5 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-lg sm:rounded-xl font-display font-bold text-base sm:text-lg hover:shadow-2xl hover:shadow-cyan-500/50 transition-all flex items-center justify-center gap-2 group"
-                >
+                <button type="submit" className="w-full py-4 bg-neon text-obsidian font-display font-bold rounded-xl hover:bg-cyan-400 transition-colors shadow-[0_0_15px_rgba(0,242,254,0.3)]">
                   Enviar Mensaje
-                  <Send className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
               </form>
-            </div>
-
-            <div className="space-y-6 sm:space-y-8 order-1 lg:order-2">
-              {[
-                { icon: <Mail className="w-6 h-6 sm:w-8 sm:h-8" />, label: 'Email', value: config?.contactEmail || 'contacto@quintoeje.com', href: `mailto:${config?.contactEmail || 'contacto@quintoeje.com'}` },
-                { icon: <Phone className="w-6 h-6 sm:w-8 sm:h-8" />, label: 'Teléfono', value: config?.phone || '+591 7000-0000', href: `tel:${(config?.phone || '+591 7000-0000').replace(/\s+/g, '')}` },
-                { icon: <MapPin className="w-6 h-6 sm:w-8 sm:h-8" />, label: 'Ubicación', value: config?.location || 'Santa Cruz de la Sierra, Bolivia', href: null }
-              ].map((item, idx) => (
-                <div
-                  key={idx}
-                  className="card-3d holographic bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl sm:rounded-2xl p-6 sm:p-8 flex items-center gap-4 sm:gap-6 group"
-                  style={{ animationDelay: `${idx * 0.1}s` }}
-                >
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform text-white">
-                    {item.icon}
-                  </div>
-                  <div className="min-w-0">
-                    <div className="font-display font-semibold text-gray-400 mb-1 text-xs sm:text-sm">{item.label}</div>
-                    {item.href ? (
-                      <a href={item.href} className="text-cyan-400 font-display text-sm sm:text-base md:text-lg hover:text-cyan-300 transition-colors truncate block">
-                        {item.value}
-                      </a>
-                    ) : (
-                      <div className="text-white font-display text-sm sm:text-base md:text-lg">{item.value}</div>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-white/10 py-8 sm:py-12 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-6 sm:mb-8">
-            <div>
-              <div className="flex items-center space-x-3 mb-4">
-                <div className="relative w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center">
-                  <svg width="56" height="56" viewBox="0 0 56 56" className="w-12 h-12 sm:w-14 sm:h-14">
-                    <defs>
-                      <linearGradient id="pentagonGradientFooter" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style={{ stopColor: '#06b6d4', stopOpacity: 1 }} />
-                        <stop offset="50%" style={{ stopColor: '#3b82f6', stopOpacity: 1 }} />
-                        <stop offset="100%" style={{ stopColor: '#8b5cf6', stopOpacity: 1 }} />
-                      </linearGradient>
-                    </defs>
-                    <polygon
-                      points="28,6 51,22 42,48 14,48 5,22"
-                      fill="url(#pentagonGradientFooter)"
-                      stroke="#06b6d4"
-                      strokeWidth="1"
-                    />
-                  </svg>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="font-display font-black text-white text-base sm:text-lg mt-1">Q5</span>
-                  </div>
-                </div>
-                <div>
-                  <h3 className="font-display font-bold text-lg sm:text-xl text-gradient">Quinto Eje</h3>
-                  <p className="text-xs text-cyan-400 font-mono">// Ingeniería</p>
-                </div>
-              </div>
-              <p className="text-gray-400 font-display text-sm mb-6">
-                Soluciones en ingeniería inteligente
-              </p>
-
-              {/* Social Media Links */}
-              <div className="flex items-center gap-4">
-                {config?.socialMedia?.facebook && (
-                  <a href={config.socialMedia.facebook} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-blue-500 hover:border-blue-500/50 hover:bg-blue-500/10 transition-all hover:scale-110">
-                    <Facebook size={18} />
-                  </a>
-                )}
-                {config?.socialMedia?.instagram && (
-                  <a href={config.socialMedia.instagram} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-pink-500 hover:border-pink-500/50 hover:bg-pink-500/10 transition-all hover:scale-110">
-                    <Instagram size={18} />
-                  </a>
-                )}
-                {config?.socialMedia?.twitter && (
-                  <a href={config.socialMedia.twitter} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-sky-400 hover:border-sky-400/50 hover:bg-sky-400/10 transition-all hover:scale-110">
-                    <Twitter size={18} />
-                  </a>
-                )}
-                {config?.socialMedia?.linkedin && (
-                  <a href={config.socialMedia.linkedin} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-blue-600 hover:border-blue-600/50 hover:bg-blue-600/10 transition-all hover:scale-110">
-                    <Linkedin size={18} />
-                  </a>
-                )}
-              </div>
-            </div>
-
-            <div>
-              <h4 className="font-display font-bold text-white mb-3 sm:mb-4 text-sm sm:text-base">Enlaces</h4>
-              <ul className="space-y-2">
-                {['servicios', 'proyectos', 'capacitaciones', 'asesoramiento', 'contacto'].map((item) => (
-                  <li key={item}>
-                    <button
-                      onClick={() => scrollToSection(item)}
-                      className="text-gray-400 hover:text-cyan-400 transition-colors font-display capitalize text-sm"
-                    >
-                      {item}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-display font-bold text-white mb-3 sm:mb-4 text-sm sm:text-base">Síguenos</h4>
-              <div className="flex gap-3 sm:gap-4">
-                <a
-                  href="https://www.linkedin.com/in/hernan-cabrera-pantoja-a75a66a2/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 sm:w-12 sm:h-12 bg-white/5 border border-white/10 rounded-lg sm:rounded-xl flex items-center justify-center hover:bg-cyan-500/20 hover:border-cyan-500/40 transition-all"
-                  title="LinkedIn"
-                >
-                  <Linkedin className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
-                </a>
-                <a
-                  href="https://www.facebook.com/profile.php?id=61588550460510"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 sm:w-12 sm:h-12 bg-white/5 border border-white/10 rounded-lg sm:rounded-xl flex items-center justify-center hover:bg-cyan-500/20 hover:border-cyan-500/40 transition-all"
-                  title="Facebook"
-                >
-                  <Facebook className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
-                </a>
-                <a
-                  href="https://www.youtube.com/@QUINTOEJE"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 sm:w-12 sm:h-12 bg-white/5 border border-white/10 rounded-lg sm:rounded-xl flex items-center justify-center hover:bg-red-500/20 hover:border-red-500/40 transition-all text-gray-400 hover:text-red-500"
-                  title="YouTube"
-                >
-                  <Youtube className="w-4 h-4 sm:w-5 sm:h-5" />
-                </a>
-              </div>
-            </div>
+      <footer className="border-t border-white/10 py-16 glassmorphism-strong relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+          <div className="flex items-center gap-6 group cursor-pointer" onClick={() => scrollToSection('inicio')}>
+            <img src="/Quinto_Eje_logo_ALTA_CALIDAD.png" alt="Quinto Eje Logo" className="w-24 md:w-32 h-auto object-contain group-hover:scale-110 transition-transform duration-500 drop-shadow-[0_0_15px_rgba(0,242,254,0.6)]" />
+          </div>
+          
+          <div className="flex space-x-6">
+             <a href="https://www.linkedin.com/in/hernan-cabrera-pantoja-a75a66a2/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-blue-500 hover:border-blue-500/50 hover:bg-blue-500/10 transition-all hover:scale-110 shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:shadow-[0_0_20px_rgba(59,130,246,0.4)]" title="LinkedIn">
+               <Linkedin size={20} />
+             </a>
+             <a href="https://www.facebook.com/profile.php?id=61588550460510" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-blue-600 hover:border-blue-600/50 hover:bg-blue-600/10 transition-all hover:scale-110 shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:shadow-[0_0_20px_rgba(37,99,235,0.4)]" title="Facebook">
+               <Facebook size={20} />
+             </a>
+             <a href="https://www.youtube.com/@QUINTOEJE" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-red-500 hover:border-red-500/50 hover:bg-red-500/10 transition-all hover:scale-110 shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:shadow-[0_0_20px_rgba(239,68,68,0.4)]" title="YouTube">
+               <Youtube size={20} />
+             </a>
           </div>
 
-          <div className="border-t border-white/10 pt-6 sm:pt-8 text-center text-gray-400 font-mono text-xs sm:text-sm px-4">
-            <span className="text-cyan-400">&lt;</span> © 2026 Quinto Eje Ingeniería. Todos los derechos reservados. <span className="text-cyan-400">/&gt;</span>
+          <div className="text-gray-400 font-mono text-sm md:text-base tracking-wider text-center md:text-right">
+            © 2026 QUINTO EJE.<br className="md:hidden" /> <span className="text-neon">FLUID INNOVATION.</span>
           </div>
         </div>
       </footer>
-
-      {/* Floating Chat Button Removed */}
     </div>
   );
 };
