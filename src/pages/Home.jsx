@@ -11,7 +11,9 @@ const QuintoEjeInnovative = () => {
   const [chatOpen, setChatOpen] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', message: '', honeypot: '' });
+  const [isCooldown, setIsCooldown] = useState(false);
+  const [cooldownTime, setCooldownTime] = useState(0);
   const [expandedService, setExpandedService] = useState(null);
   const [expandedProject, setExpandedProject] = useState(null);
   const canvasRef = useRef(null);
@@ -51,6 +53,18 @@ const QuintoEjeInnovative = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Cooldown timer
+  useEffect(() => {
+    let timer;
+    if (isCooldown && cooldownTime > 0) {
+      timer = setTimeout(() => setCooldownTime(prev => prev - 1), 1000);
+    } else if (cooldownTime === 0 && isCooldown) {
+      setIsCooldown(false);
+    }
+    return () => clearTimeout(timer);
+  }, [isCooldown, cooldownTime]);
+
 
   // Particle animation
   useEffect(() => {
@@ -284,6 +298,18 @@ const QuintoEjeInnovative = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // 1. Honeypot check (Bots fill this, humans don't)
+    if (formData.honeypot) {
+      console.warn("Spam detectado. Solicitud rechazada silenciosamente.");
+      return;
+    }
+
+    // 2. Cooldown check
+    if (isCooldown) {
+      alert(`Por favor espera ${cooldownTime} segundos antes de enviar otro mensaje.`);
+      return;
+    }
+
     // Check if email config exists
     if (!config?.emailConfig?.emailJsServiceId || !config?.emailConfig?.emailJsTemplateId || !config?.emailConfig?.emailJsPublicKey) {
       alert('Error: La configuración de email no está completa en el panel de administración.');
@@ -305,7 +331,9 @@ const QuintoEjeInnovative = () => {
       await emailjs.send(serviceId, templateId, templateParams, publicKey);
 
       alert('¡Mensaje enviado con éxito! Nos pondremos en contacto pronto.');
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({ name: '', email: '', message: '', honeypot: '' });
+      setIsCooldown(true);
+      setCooldownTime(60); // 60 segundos de bloqueo tras enviar
     } catch (error) {
       console.error('Error sending email:', error);
       alert('Hubo un error al enviar el mensaje. Por favor intenta más tarde o contáctanos directamente.');
@@ -727,6 +755,12 @@ const QuintoEjeInnovative = () => {
 
             <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
               <form onSubmit={handleSubmit} className="glassmorphism-strong rounded-3xl p-8 space-y-6">
+                {/* Campo trampa (Honeypot) oculto a la vista pero visible para bots */}
+                <div style={{ display: 'none' }} aria-hidden="true">
+                  <label>No llenar esto si eres humano</label>
+                  <input type="text" name="honeypot" tabIndex="-1" autoComplete="off" value={formData.honeypot} onChange={(e) => setFormData({ ...formData, honeypot: e.target.value })} />
+                </div>
+                
                 <div>
                   <label className="block text-gray-300 font-display mb-2 text-sm">Nombre</label>
                   <input type="text" required value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} className="w-full px-4 py-3 bg-black/50 border border-white/10 rounded-xl text-white font-display focus:border-neon outline-none transition-colors" />
@@ -739,8 +773,8 @@ const QuintoEjeInnovative = () => {
                   <label className="block text-gray-300 font-display mb-2 text-sm">Mensaje</label>
                   <textarea required value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} rows="4" className="w-full px-4 py-3 bg-black/50 border border-white/10 rounded-xl text-white font-display focus:border-neon outline-none transition-colors resize-none" />
                 </div>
-                <button type="submit" className="w-full py-4 bg-neon text-obsidian font-display font-bold rounded-xl hover:bg-cyan-400 transition-colors shadow-[0_0_15px_rgba(0,242,254,0.3)]">
-                  Enviar Mensaje
+                <button type="submit" disabled={isCooldown} className={`w-full py-4 font-display font-bold rounded-xl transition-colors shadow-[0_0_15px_rgba(0,242,254,0.3)] ${isCooldown ? 'bg-gray-600 text-gray-400 cursor-not-allowed' : 'bg-neon text-obsidian hover:bg-cyan-400'}`}>
+                  {isCooldown ? `Espera ${cooldownTime}s...` : 'Enviar Mensaje'}
                 </button>
               </form>
             </motion.div>
