@@ -123,13 +123,23 @@
       "url": "https://www.facebook.com/reel/877563531786793"
     },
     {
-      "id": 1774015961932,
-      "title": "Posicionamiento, marketing digital con IA",
-      "duration": "20 horas",
-      "level": "Intermedio",
+      "id": 1774017378055,
+      "title": "Herramientas IA aplicadas",
+      "duration": "16 horas",
+      "level": "Avanzado",
       "date": "Proximamente",
-      "description": "Desarrollar estrategias digitales para atraer y convertir clientes.\nAlcance: SEO/SEM, redes sociales, email marketing, analítica web.",
-      "image": "https://imgur.com/Dqou6LX.jpg",
+      "description": "Aplicar herramientas de IA generativa para ganar productividad. ChatGPT, Copilot, gemini, claude, grok, otros, prompt engineering, automatización de procesos.\n\n",
+      "image": "https://imgur.com/WhUo6dm.jpg",
+      "url": ""
+    },
+    {
+      "id": 1774015961932,
+      "title": "IA APLICADA PARA EL ADULTO MAYOR",
+      "duration": "16 horas",
+      "level": "Intermedio",
+      "date": "18 de julio de 2026",
+      "description": "Este programa formativo está diseñado específicamente para dotar a los adultos mayores de las competencias prácticas necesarias para interactuar con herramientas de Inteligencia Artificial de forma cotidiana, segura y eficiente.",
+      "image": "/bg_ia_adultos.png",
       "url": ""
     },
     {
@@ -150,16 +160,6 @@
       "date": "Proximamente",
       "description": "Crear reportes interactivos que transformen datos en decisiones. Modelado DAX, visualizaciones, publicación cloud, storytelling.\n\n",
       "image": "https://imgur.com/0gCK1Zc.jpg",
-      "url": ""
-    },
-    {
-      "id": 1774017378055,
-      "title": "Herramientas IA aplicadas",
-      "duration": "16 horas",
-      "level": "Avanzado",
-      "date": "Proximamente",
-      "description": "Aplicar herramientas de IA generativa para ganar productividad. ChatGPT, Copilot, gemini, claude, grok, otros, prompt engineering, automatización de procesos.\n\n",
-      "image": "https://imgur.com/WhUo6dm.jpg",
       "url": ""
     }
   ]
