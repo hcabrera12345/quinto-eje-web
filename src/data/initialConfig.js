@@ -106,17 +106,6 @@ export const initialConfig = {
             gradient: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)"
         },
         {
-            id: 1770736412511,
-            title: "CURSOS MOOC - PYTHON PROGRAMMING",
-            category: "DESARROLLO WEB",
-            description: "Desarrollo de una plataforma virtual educativa en formato MOOC.",
-            detailedInfo: "En este ejemplo desarrollamos un curso para la programación en python, nivel básico   a intermedio.",
-            image: "",
-            detailImage: "",
-            url: "https://python-mooc-platform.onrender.com/",
-            gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
-        },
-        {
             id: 1774019100000,
             title: "SISTEMA DE CERTIFICACIONES DIGITALES (MyCertificado)",
             category: "DESARROLLO WEB & SISTEMAS",
