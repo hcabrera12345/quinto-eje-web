@@ -109,9 +109,30 @@
       "detailImage": "",
       "url": "https://python-mooc-platform.onrender.com/",
       "gradient": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+    },
+    {
+      "id": 1774019100000,
+      "title": "SISTEMA DE CERTIFICACIONES DIGITALES (MyCertificado)",
+      "category": "DESARROLLO WEB & SISTEMAS",
+      "description": "Plataforma integral de emisión, gestión y verificación pública de certificados académicos con validación QR.",
+      "detailedInfo": "Desarrollo de un sistema web escalable para la automatización del ciclo de certificaciones académicas. Permite a las instituciones emitir diplomas digitales infalsificables, a los estudiantes consultar y descargar sus certificados, y a terceros verificar la autenticidad en tiempo real mediante escaneo de QR y códigos de validación únicos.",
+      "image": "",
+      "detailImage": "",
+      "url": "",
+      "gradient": "linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%)"
     }
   ],
   "capacitaciones": [
+    {
+      "id": 1774019000000,
+      "title": "DOCENTE 5.0: IA PARA DOCENTES Y EDUCADORES",
+      "duration": "20 horas",
+      "level": "Práctico / Aplicado",
+      "date": "Inscripciones Abiertas",
+      "description": "Transforma tu labor pedagógica con Inteligencia Artificial. Automatización de evaluaciones, planificación didáctica, creación de recursos multimedia interactivos y asistentes virtuales de aprendizaje.",
+      "image": "/bg_docente_50.jpg",
+      "url": ""
+    },
     {
       "id": 4,
       "title": "PYTHON PARA ANÁLISIS DE DATOS EN INGENIERÍA",
