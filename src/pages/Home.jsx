@@ -550,7 +550,7 @@ const QuintoEjeInnovative = () => {
             <h2 className="font-display font-black text-5xl md:text-6xl mb-6 text-gradient-premium">Proyectos</h2>
           </motion.div>
 
-          <div className="flex flex-col lg:flex-row w-full h-auto lg:h-[600px] gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 w-full gap-4">
             {projects.map((project, idx) => {
               const customIcons = ['/icon_iot.png', '/icon_ai.png', '/icon_web.png', '/icon_data.png'];
               const iconSrc = customIcons[idx % 4];
@@ -561,7 +561,7 @@ const QuintoEjeInnovative = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
-                  className="relative flex-1 lg:hover:flex-[2.5] hover:flex-none transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] overflow-hidden rounded-3xl group border border-white/10 min-h-[300px]"
+                  className="relative overflow-hidden rounded-3xl group border border-white/10 min-h-[360px]"
                   style={{ background: project.gradient || '#0F172A' }}
                 >
                   {/* Background Image / Overlay */}
@@ -580,12 +580,12 @@ const QuintoEjeInnovative = () => {
                       <span className="px-3 py-1 bg-neon/10 border border-neon/30 text-neon rounded-full font-mono text-xs mb-4 inline-block shadow-[0_0_10px_rgba(0,242,254,0.2)]">
                         {project.category}
                       </span>
-                      <h3 className="font-display font-black text-2xl md:text-3xl lg:text-4xl text-white mb-2 whitespace-normal break-words leading-tight">
+                      <h3 className="font-display font-black text-2xl text-white mb-2 whitespace-normal break-words leading-tight">
                         {project.title}
                       </h3>
                       
                       {/* Detailed info visible on hover */}
-                      <div className="h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-700 ease-in-out overflow-hidden mt-4 lg:w-[400px]">
+                      <div className="h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-700 ease-in-out overflow-hidden mt-4">
                         <p className="text-gray-300 font-display text-sm md:text-base mb-4 leading-relaxed line-clamp-3">
                           {project.description}
                         </p>
@@ -596,9 +596,11 @@ const QuintoEjeInnovative = () => {
                             </p>
                           </div>
                         )}
-                        <button className="mt-4 flex items-center gap-2 text-neon font-display font-bold text-sm hover:gap-3 transition-all">
-                          Ver caso de estudio <ArrowRight size={16} />
-                        </button>
+                        {project.url && (
+                          <a href={project.url} target="_blank" rel="noopener noreferrer" className="mt-4 flex items-center gap-2 text-neon font-display font-bold text-sm hover:gap-3 transition-all">
+                            Ver proyecto <ArrowRight size={16} />
+                          </a>
+                        )}
                       </div>
                     </div>
 

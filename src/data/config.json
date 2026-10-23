@@ -67,48 +67,81 @@
       "gradient": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
     },
     {
-      "id": 2,
-      "title": "MyCuentas_Bot",
-      "category": "IA AGENT",
-      "description": "Chatbot en TELEGRAM con procesamiento de lenguaje natural para el registro de gastos diarios por comandos de voz.",
-      "detailedInfo": "Agente conversacional inteligente que registra tus gastos por comando de voz y te saca reportes cada vez que los necesitas, ideal para las finanzas personales.",
-      "image": "",
-      "detailImage": "",
-      "url": "https://t.me/MyCuentas_bot",
-      "gradient": "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"
-    },
-    {
-      "id": 3,
-      "title": "LeyCo",
-      "category": "IA AGENT",
-      "description": "Agente IA en TELEGRAM para las consultas en formato texto o por comando de voz para el análisis, interpretación y ayuda de documentos como leyes, decretos, resoluciones y otros.",
-      "detailedInfo": "Agente inteligente que ayuda a redactar, analizar e interpretar documentos. Carga los archivos que desees trabajar y recibe apoyo en la redacción y sugerencias técnicas.",
-      "image": "",
-      "detailImage": "",
-      "url": "https://t.me/LeyCo_bot",
-      "gradient": "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"
-    },
-    {
-      "id": 4,
-      "title": "DASHBOARD INTELIGENTE",
-      "category": "Data Reporting & Science",
-      "description": "Un dashboard inteligente para la visualización de datos en tiempo real y la toma de decisiones.",
-      "detailedInfo": "Dashboard inteligente como resultado de un análisis de datos, para la visualización ejecutiva de todo tipo de reportes.",
-      "image": "",
-      "detailImage": "",
-      "url": "https://webreporte-j87aou7q2nds9xwsklwem4.streamlit.app/",
-      "gradient": "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)"
-    },
-    {
-      "id": 1774019100000,
-      "title": "SISTEMA DE CERTIFICACIONES DIGITALES (MyCertificado)",
-      "category": "DESARROLLO WEB & SISTEMAS",
-      "description": "Plataforma integral de emisión, gestión y verificación pública de certificados académicos con validación QR.",
-      "detailedInfo": "Desarrollo de un sistema web escalable para la automatización del ciclo de certificaciones académicas. Permite a las instituciones emitir diplomas digitales infalsificables, a los estudiantes consultar y descargar sus certificados, y a terceros verificar la autenticidad en tiempo real mediante escaneo de QR y códigos de validación únicos.",
+      "id": 1792800000001,
+      "title": "Asuntos Centrales",
+      "category": "MEDIOS",
+      "description": "Copiloto de redacción con IA y motor de audiencia propia para un medio digital.",
+      "detailedInfo": "",
       "image": "",
       "detailImage": "",
       "url": "",
       "gradient": "linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%)"
+    },
+    {
+      "id": 1792800000002,
+      "title": "CBHE",
+      "category": "ENERGÍA",
+      "description": "Programas de analítica e IA para mandos medios y alta gerencia.",
+      "detailedInfo": "",
+      "image": "",
+      "detailImage": "",
+      "url": "",
+      "gradient": "linear-gradient(135deg, #f59e0b 0%, #ef4444 100%)"
+    },
+    {
+      "id": 1792800000003,
+      "title": "Proyecto Aquino · AXORA",
+      "category": "COMBUSTIBLES",
+      "description": "Diagnóstico de 593 estaciones de servicio, con tableros.",
+      "detailedInfo": "",
+      "image": "",
+      "detailImage": "",
+      "url": "",
+      "gradient": "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)"
+    },
+    {
+      "id": 1792800000004,
+      "title": "FUEL TRACK BO",
+      "category": "SISTEMAS",
+      "description": "Sistema de gestión integral para la importación de diésel y gasolinas.",
+      "detailedInfo": "",
+      "image": "",
+      "detailImage": "",
+      "url": "",
+      "gradient": "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"
+    },
+    {
+      "id": 1792800000005,
+      "title": "Galván Inmobiliaria",
+      "category": "BIENES RAÍCES",
+      "description": "Página web, sistema CRM y atención al cliente con agente IA.",
+      "detailedInfo": "",
+      "image": "",
+      "detailImage": "",
+      "url": "",
+      "gradient": "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"
+    },
+    {
+      "id": 1792800000006,
+      "title": "Nixaga Petrol",
+      "category": "WEB",
+      "description": "Página web, seguridad y correos corporativos.",
+      "detailedInfo": "",
+      "image": "",
+      "detailImage": "",
+      "url": "",
+      "gradient": "linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)"
+    },
+    {
+      "id": 1792800000007,
+      "title": "Datos electorales",
+      "category": "ANÁLISIS DE DATOS",
+      "description": "Encuestas, análisis de resultados y orientación en elecciones municipales.",
+      "detailedInfo": "",
+      "image": "",
+      "detailImage": "",
+      "url": "",
+      "gradient": "linear-gradient(135deg, #14b8a6 0%, #3b82f6 100%)"
     }
   ],
   "capacitaciones": [
